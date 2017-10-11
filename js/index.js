@@ -19,8 +19,8 @@ program
 // Ceate a new express app
 
 var app = express();
-var port;
-
+var port = process.env.PORT || 8000
+let server = require('http').Server(app);
 // Serve static files from the frontend folder
 
 app.use('/', express.static(path.join(__dirname, './')));
@@ -40,7 +40,7 @@ app.use('/files', express.static(process.cwd(), {
 
 // Everything is setup. Listen on the port.
 
-app.listen(process.env.PORT || 3000, function(){
+server.listen(port, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
