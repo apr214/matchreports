@@ -14,8 +14,6 @@ program
     .option('-p, --port <port>', 'Port on which to listen to (defaults to 3000)', parseInt)
     .parse(process.argv);
 
-var port = program.port || 3000;
-
 // Scan the directory in which the script was called. It will
 // add the 'files/' prefix to all files and folders, so that
 // download links point to our /files route
@@ -51,6 +49,7 @@ app.get('/scan', function(req,res){
 
 // Everything is setup. Listen on the port.
 
-app.listen(port);
-
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 console.log('Files is running on port ' + port);
