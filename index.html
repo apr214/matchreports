@@ -1,0 +1,113 @@
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js'></script>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src="js/generate.js"></script>
+<script src="js/server.js"></script>
+<script src="js/nodemailer.js"></script>
+<script src="bower_components/jspdf/dist/jspdf.min.js"></script>
+<script src="bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js"></script>
+<script src="js/jspdf.plugin.text-align.js"></script>
+<script  src="js/index.js"></script> 
+
+    
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+    <body>
+        <div class="navbar">
+            <h1>Hawk-Eye MLS Match Report</h1>
+        </div><br>
+            <input type="text" class="form-control" id="team1" placeholder="Home Team"/><br>
+            <input type="text" id="team2" value="" placeholder="Away team"/><br>
+            <input type="text" id="date" value="" placeholder="Date"/><br>
+            <input type="text" id="var" value="" placeholder="VAR Name" /><br>
+            <input type="text" id="avar" value="" placeholder="AVAR Name" /><br>
+            <input type="text" id="operator" value="" placeholder="Operator"/><br>
+            <input type="text" id="stadium" value="" placeholder="Stadium"/><br>
+            <input type="text" id="kickoff" value="" placeholder="Kick-off Time"/><br>
+            
+<!--VAR + AVAR Ratings-->
+            
+            <br><h2>VAR RATINGS</h2>
+            <br>
+
+            <input type="text" id="comms_var" value="" placeholder="Comms with VAR Team"/><br>
+            <input type="text" id="comms_ro" value="" placeholder="Comms with RO"/><br>
+            <input type="text" id="comms_ref" value="" placeholder="Comms with Ref" /><br>
+            <input type="text" id="decision" value="" type="number" placeholder="Decision Making & Speed" /><br>
+            <input type="text" id="protocol" value="" placeholder="Protocol Knowledge"/><br>
+<!--            <input type="text" id="notes" value="" placeholder="Notes" style="width: 300px; height: 200px; word-wrap: break-word;"/><br>-->
+            <textarea rows="10" cols="90" id = "notes" wrap="hard" placeholder="VAR Notes / Comments "></textarea>
+            
+            <br>
+            <br>
+        
+        
+        <br>
+        <b><h2>AVAR RATINGS</h2></b>
+            <br>
+            
+            <input type="text" id="acomms_var" value="" placeholder="Comms with VAR Team"/><br>
+            <input type="text" id="acomms_ro" value="" placeholder="Comms with RO"/><br>
+            <input type="text" id="acomms_ref" value="" placeholder="Comms with Ref" /><br>
+            <input type="text" id="adecision" value="" type="number" placeholder="Decision Making & Speed" /><br>
+            <input type="text" id="aprotocol" value="" placeholder="Protocol Knowledge"/><br>
+<!--            <input type="text" id="notes" value="" placeholder="Notes" style="width: 300px; height: 200px; word-wrap: break-word;"/><br>-->
+            <textarea rows="10" cols="90" id = "anotes" wrap="hard" placeholder="AVAR Notes / Comments"></textarea>
+            
+            <br>
+        
+        <br>
+        <b><h2>LTR RATINGS</h2></b>
+            <br>
+            <br>
+            <b><i>VOR Personnel</i></b>
+            <br>
+            <input type="text" id="checklist" value="" placeholder="Completing Checklist in a timely manner"/><br>
+            <input type="text" id="rigging" value="" placeholder="Rigging and Troubleshooting Vokkero"/><br>
+            <input type="text" id="understand" value="" placeholder="General understanding of Video Review System" /><br>
+            <input type="text" id="competent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
+            <br>
+            <b><i>Referees</i></b>
+            <br>
+            <input type="text" id="refchecklist" value="" placeholder="Completing Checklist in a timely manner"/><br>
+            <input type="text" id="refrigging" value="" placeholder="Rigging and Troubleshooting Vokkero"/><br>
+            <input type="text" id="refunderstand" value="" placeholder="General understanding of Video Review System" /><br>
+            <input type="text" id="refcompetent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
+            <br>
+            <b><i>Stadium Personnel</i></b>
+            <br>    
+            <input type="text" id="stachecklist" value="" placeholder="Completing Checklist in a timely manner"/><br>
+            <input type="text" id="starigging" value="" placeholder="Rigging and Troubleshooting Vokkero"/><br>
+            <input type="text" id="staunderstand" value="" placeholder="General understanding of Video Review System" /><br>
+            <input type="text" id="stacompetent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
+            <br>
+        
+        
+            <br>
+        
+            <b><h2>MATCH REPORT</h2></b>
+            <br>
+            <input type="text" id="num_incident" value="" placeholder="Important Incident Number"/><br>
+            <input type="text" id="inc_type" value="" placeholder="Incident Type"/><br>
+            <input type="text" id="confirm" value="" placeholder="Confirm or Overrule"/><br>
+            <input type="text" id="link" value="" placeholder="Link"/><br>
+            <input type="text" id="hardware" value="" placeholder="Hardware Issues" /><br>
+            <input type="text" id="software" value="" placeholder="Software Issues" /><br>
+            <input type="text" id="audio" value="" placeholder="Audio Issues"/><br>
+            <textarea rows="10" cols="90" id ="comments" wrap="hard" placeholder="General Comments"></textarea><br><br><br>
+        
+        
+            <b><h2>QUIRKS AND IMPROVEMENTS</h2></b>
+            <br>
+            <textarea rows="10" cols="90" id ="improvements" wrap="hard" placeholder="Impovements Made"></textarea><br>
+            <textarea rows="10" cols="90" id ="quirks" wrap="hard" placeholder="Quirks?"></textarea>
+            <br>
+            <textarea rows="10" cols="90" id ="gen_comments" wrap="hard" placeholder="General Comments"></textarea>
+        
+            <br>
+        <button type="button" class="button" onclick="generate();" >Generate PDF</button>
+        
+        
+</body>
+</html>
