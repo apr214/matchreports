@@ -7,7 +7,7 @@ const sgMail = require('@sendgrid/mail');
 function generate() {
 
     var doc = new jsPDF('p', 'pt');
-
+    var links = [];
     //VAR Defs
     var team1 = document.getElementById("team1").value;
     var team2 = document.getElementById("team2").value;
@@ -38,15 +38,15 @@ function generate() {
     var ltrunderstand = document.getElementById("understand").value;
     var ltrcompetent = document.getElementById("competent").value;
 
-    var ltrrefchecklist = document.getElementById("refchecklist").value;
-    var ltrrefrigging = document.getElementById("refrigging").value;
-    var ltrrefunderstand = document.getElementById("refunderstand").value;
-    var ltrrefcompetent = document.getElementById("refcompetent").value;
-
-    var ltrstachecklist = document.getElementById("stachecklist").value;
-    var ltrstarigging = document.getElementById("starigging").value;
-    var ltrstaunderstand = document.getElementById("staunderstand").value;
-    var ltrstacompetent = document.getElementById("stacompetent").value;
+    //    var ltrrefchecklist = document.getElementById("refchecklist").value;
+    //    var ltrrefrigging = document.getElementById("refrigging").value;
+    //    var ltrrefunderstand = document.getElementById("refunderstand").value;
+    //    var ltrrefcompetent = document.getElementById("refcompetent").value;
+    //
+    //    var ltrstachecklist = document.getElementById("stachecklist").value;
+    //    var ltrstarigging = document.getElementById("starigging").value;
+    //    var ltrstaunderstand = document.getElementById("staunderstand").value;
+    //    var ltrstacompetent = document.getElementById("stacompetent").value;
 
     var numIncidents = document.getElementById("num_incident").value;
     var incType = document.getElementById("inc_type").value;
@@ -59,12 +59,19 @@ function generate() {
     var quirks = document.getElementById("quirks").value;
     var improve = document.getElementById("improvements").value;
     var gen_comms = document.getElementById("gen_comments").value;
+    var header = "LTR Ratings";
 
     //doc.text(team1 + " vs " + team2 + " Match Report", 210, 35);
-    doc.setTextColor(20);
     doc.myText(team1 + " vs " + team2 + " Match Report", {
         align: "center"
-    }, 0, 30);
+    }, 0, 35);
+
+
+    doc.setTextColor(0,0,255);  
+    doc.setFontSize(9);
+    doc.myText(link, {
+        align: "center"
+    }, 0, 55);
 
 
     //TEAM v TEAM TABLE
@@ -92,10 +99,11 @@ function generate() {
         ];
 
     doc.autoTable(columns, rows, {
-        startY: doc.autoTableEndPosY() + 50,
+        startY: doc.autoTableEndPosY() + 70,
         styles: {
             overflow: 'linebreak'
         },
+        theme: 'grid',
         columnStyles: {
             team1: {
                 columnWidth: 'auto'
@@ -155,7 +163,8 @@ function generate() {
         startY: doc.autoTableEndPosY() + 50,
         styles: {
             overflow: 'linebreak'
-        }
+        },
+        theme: 'grid'
     });
 
 
@@ -220,6 +229,7 @@ function generate() {
         padding: {
             top: 10
         },
+        theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
             overflow: 'linebreak',
@@ -241,10 +251,6 @@ function generate() {
 
     var ltrcolumns = [
         {
-            title: "Communication",
-            dataKey: "comm"
-        },
-        {
             title: "Completing Checklist Timely",
             dataKey: "checklist"
         },
@@ -264,31 +270,46 @@ function generate() {
 
     var ltrrows = [
         {
-            "comm": "a) VOR personnel",
             "checklist": ltrchecklist,
             "rigging": ltrrigging,
             "understand": ltrunderstand,
             "helpful": ltrcompetent
-        },
-
-        {
-            "comm": "b) Referees",
-            "checklist": ltrrefchecklist,
-            "rigging": ltrrefrigging,
-            "understand": ltrrefunderstand,
-            "helpful": ltrrefcompetent
-        },
-
-        {
-            "comm": "c) Stadium Personnel",
-            "checklist": ltrstachecklist,
-            "rigging": ltrstarigging,
-            "understand": ltrstaunderstand,
-            "helpful": ltrstacompetent
-        },
+        }
+//
+//        {
+//            "comm": "b) Referees",
+//            "checklist": ltrrefchecklist,
+//            "rigging": ltrrefrigging,
+//            "understand": ltrrefunderstand,
+//            "helpful": ltrrefcompetent
+//        },
+//
+//        {
+//            "comm": "c) Stadium Personnel",
+//            "checklist": ltrstachecklist,
+//            "rigging": ltrstarigging,
+//            "understand": ltrstaunderstand,
+//            "helpful": ltrstacompetent
+//        }
 
         ];
 
+    doc.autoTable(ltrcolumns, ltrrows, {
+        //margin: {horizontal:5,top: 20},
+        padding: {
+            top: 10
+        },
+        theme: 'grid',
+        startY: doc.autoTableEndPosY() + 50,
+        styles: {
+            overflow: 'linebreak',
+        },
+        columnStyles: {
+            checklist: {
+                columnWidth: 90
+            }
+        }
+    });
 
     //Match Report Rating  TABLE
     //doc.text("RATINGS DETAILS", 14, 75);
@@ -309,10 +330,6 @@ function generate() {
         {
             title: "Description",
             dataKey: "description"
-        },
-        {
-            title: "Link",
-            dataKey: "link"
         }
         ];
 
@@ -323,7 +340,6 @@ function generate() {
             "type": incType,
             "correct": confirm,
             "description": comments,
-            "link": link
         },
 
         {
@@ -331,7 +347,6 @@ function generate() {
             "type": "",
             "correct": "",
             "description": "",
-            "link": ""
         },
 
         {
@@ -339,7 +354,6 @@ function generate() {
             "type": "",
             "correct": "",
             "description": "",
-            "link": ""
         }
 
         ];
@@ -349,31 +363,14 @@ function generate() {
         padding: {
             top: 10
         },
+        theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
             overflow: 'linebreak'
         },
         columnStyles: {
-            link: {
-                columnWidth: 140
-            },
             description: {
                 columnWidth: 150
-            }
-        },
-        drawCell: function (cell, opts) {
-            if (opts.column.dataKey == "link") {
-                links.push({
-                    x: cell.textPos.x,
-                    y: cell.textPos.y
-                });
-            }
-        },
-        addPageContent: function () {
-            for (var i = 0; i < links.length; i++) {
-                doc.textWithLink('', links[i].x, links[i].y, {
-                    url: link
-                });
             }
         }
     });
@@ -437,6 +434,7 @@ function generate() {
         padding: {
             top: 10
         },
+        theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
             overflow: 'linebreak'
@@ -448,6 +446,7 @@ function generate() {
         padding: {
             top: 10
         },
+        theme: 'grid',
         startY: doc.autoTableEndPosY() + 70,
         styles: {
             overflow: 'linebreak'
@@ -460,6 +459,7 @@ function generate() {
         padding: {
             top: 10
         },
+        theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
             overflow: 'linebreak'
