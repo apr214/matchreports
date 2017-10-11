@@ -2,7 +2,7 @@
   "name": "hawkeyeusa",
   "version": "1.0.0",
   "description": "match reporting",
-  "main": "server.js",
+  "main": "js/index.js",
   "dependencies": {
     "bluebird": "^3.5.1",
     "connect": "^3.6.5",
