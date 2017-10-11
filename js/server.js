@@ -10,6 +10,6 @@ app.get("/", function (req,res) {
     res.send("server : i am working")
 });
 
-var server = app.listen(8008, function() {
-    console.log(new Date().toISOString() + ": server started on port 8008"); 
+var server = app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
