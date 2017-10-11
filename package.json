@@ -1,26 +1,31 @@
 {
   "name": "hawkeyeusa",
   "version": "1.0.0",
-  "description": "Match Reports generator",
+  "description": "match reporting",
   "main": "index.js",
-  "engines": {
-    "node": ">=50.9" // intentionally so big version number
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "connect": "^3.6.5",
+    "commander": "^2.11.0",
+    "content-disposition": "^0.5.2",
+    "node":"^7.2.1",
+    "express": "^4.16.2",
+    "missing": "^0.0.1"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Alex Ratner",
-  "license": "ISC",
-  "dependencies": {
-    "commander": "^2.11.0",
-    "content-disposition": "^0.5.2",
-    "express": "^4.16.2"
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/apr214/matchreports.git"
   },
+  "keywords": [
+    "match",
+    "reports"
+  ],
+  "author": "alex ratner",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/apr214/matchreports/issues"
   },
