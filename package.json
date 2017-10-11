@@ -5,7 +5,7 @@
   "main": "index.js",
   "engines": {
     "node": ">=50.9" // intentionally so big version number
-  }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
