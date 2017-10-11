@@ -13,10 +13,6 @@
     "missing": "^0.0.1"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm start"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/apr214/matchreports.git"
