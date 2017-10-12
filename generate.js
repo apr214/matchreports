@@ -12,6 +12,8 @@ function generate() {
     var team1 = document.getElementById("team1").value;
     var team2 = document.getElementById("team2").value;
 
+    //for loop to determine how many incidents there are
+
     var date = document.getElementById("date").value;
     var var_name = document.getElementById("var").value;
     var avar = document.getElementById("avar").value;
@@ -38,22 +40,47 @@ function generate() {
     var ltrunderstand = document.getElementById("understand").value;
     var ltrcompetent = document.getElementById("competent").value;
 
-    //    var ltrrefchecklist = document.getElementById("refchecklist").value;
-    //    var ltrrefrigging = document.getElementById("refrigging").value;
-    //    var ltrrefunderstand = document.getElementById("refunderstand").value;
-    //    var ltrrefcompetent = document.getElementById("refcompetent").value;
-    //
-    //    var ltrstachecklist = document.getElementById("stachecklist").value;
-    //    var ltrstarigging = document.getElementById("starigging").value;
-    //    var ltrstaunderstand = document.getElementById("staunderstand").value;
-    //    var ltrstacompetent = document.getElementById("stacompetent").value;
 
-    var numIncidents = document.getElementById("num_incident").value;
+    var numIncidents = document.getElementById("num_inc").value;
     var incType = document.getElementById("inc_type").value;
+    var description = document.getElementById("description").value;
+    var confirm = document.getElementById("confirm").value;
+    var training = document.getElementById("training").value;
+    var varfeed = document.getElementById("varfeed").value;
+    var rofeed = document.getElementById("rofeed").value;
+
+    //    var table = document.getElementById("matchTable");
+    //    var tableArr = [];
+    //        for (var i = 1; i < table.rows.length; i++) {
+    //            tableArr.push({
+    //                numIncidents: table.rows[i].cells[0].innerHTML,
+    //                incType: table.rows[i].cells[1].innerHTML,
+    //                description: table.rows[i].cells[2].innerHTML,
+    //                confirm: table.rows[i].cells[3].innerHTML,
+    //                training: table.rows[i].cells[4].innerHTML,
+    //                varfeed: table.rows[i].cells[5].innerHTML,
+    //                rofeed: table.rows[i].cells[6].innerHTML
+    //            });
+    //        }
+    var myTableArray = [];
+    $("table#matchTable tr").each(function () {
+        var arrayOfThisRow = [];
+        var tableData = $(this).find('td');
+        if (tableData.length > 0) {
+            tableData.each(function () {
+                arrayOfThisRow.push($(this).text());
+            });
+            myTableArray.push(arrayOfThisRow);
+        }
+    });
+
+
+    var res = doc.autoTableHtmlToJson(document.getElementById("matchTable"));
+    console.log(res);
+
     var hardware = document.getElementById("hardware").value;
     var software = document.getElementById("software").value;
     var comments = document.getElementById("comments").value;
-    var confirm = document.getElementById("confirm").value;
     var link = document.getElementById("link").value;
 
     var quirks = document.getElementById("quirks").value;
@@ -67,7 +94,7 @@ function generate() {
     }, 0, 35);
 
 
-    doc.setTextColor(0,0,255);  
+    doc.setTextColor(0, 0, 255);
     doc.setFontSize(9);
     doc.myText(link, {
         align: "center"
@@ -314,9 +341,14 @@ function generate() {
     //Match Report Rating  TABLE
     //doc.text("RATINGS DETAILS", 14, 75);
     var links = [];
+
+
+    //        for (var i = 1; i < table.rows.length; i++) {
+
+    //    }
     var inccolumns = [
         {
-            title: "Important Incident Number",
+            title: "Incident Number",
             dataKey: "incNum"
         },
         {
@@ -330,6 +362,18 @@ function generate() {
         {
             title: "Description",
             dataKey: "description"
+        },
+        {
+            title: "Training Clip",
+            dataKey: "training"
+        },
+        {
+            title: "VAR Feedback",
+            dataKey: "varfeed"
+        },
+        {
+            title: "RO Feedback",
+            dataKey: "rofeed"
         }
         ];
 
@@ -339,24 +383,13 @@ function generate() {
             "incNum": numIncidents,
             "type": incType,
             "correct": confirm,
-            "description": comments,
-        },
+            "description": description,
+            "training": training,
+            "varfeed": varfeed,
+            "rofeeed": rofeed
+            }
 
-        {
-            "incNum": "",
-            "type": "",
-            "correct": "",
-            "description": "",
-        },
-
-        {
-            "incNum": "",
-            "type": "",
-            "correct": "",
-            "description": "",
-        }
-
-        ];
+            ];
 
     doc.autoTable(inccolumns, incrows, {
         //margin: {horizontal:5,top: 20},
@@ -371,6 +404,15 @@ function generate() {
         columnStyles: {
             description: {
                 columnWidth: 150
+            },
+            training: {
+                columnWidth: 40
+            },
+            rofeed: {
+                columnWidth: 100
+            },
+            varfeed: {
+                columnWidth: 100
             }
         }
     });

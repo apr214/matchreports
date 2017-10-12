@@ -3,10 +3,10 @@
 <head>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js'></script>
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src="js/addRow.js"></script>
     <script src="js/generate.js"></script>
     <script src="js/server.js"></script>
     <script src="js/nodemailer.js"></script>
-    <script src="js/tableSize.js"></script>
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
     <script src="bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js"></script>
     <script src="js/jspdf.plugin.text-align.js"></script>
@@ -148,7 +148,7 @@
         <br>
 
         <input type="text" id="avar" value="" placeholder="AVAR Name" /><br>
-        
+
 
         <input list="operators" id="operator" placeholder="Operator Name">
         <datalist id="operators">
@@ -167,8 +167,8 @@
           <option value="Robbie Snooks">Robbie Snooks</option>
         </datalist>
         <br>
-        
-        
+
+
         <input type="text" id="link" target="_blank" value="" placeholder="Link" /><br>
         <input type="text" id="kickoff" value="" placeholder="Kick-off Time" /><br>
 
@@ -228,17 +228,47 @@
 -->
         <br>
 
-        <b><h2>MATCH REPORT</h2></b>
-        <br>
-        <input type="text" id="num_incident" value="" placeholder="Number of Incidents" /><br>
-        <input type="text" id="inc_type" value="" placeholder="Incident Type" /><br>
-        <input type="text" id="confirm" value="" placeholder="Confirm or Overrule" /><br>
+        <b><h2>ISSUES</h2></b>
         <input type="text" id="hardware" value="" placeholder="Hardware Issues" /><br>
         <input type="text" id="software" value="" placeholder="Software Issues" /><br>
         <input type="text" id="audio" value="" placeholder="Audio Issues" /><br>
         <textarea rows="10" cols="90" id="comments" wrap="hard" placeholder="General Comments"></textarea><br><br><br>
 
 
+    </form>
+    <b><h2>MATCH REPORT</h2></b>
+    <br>
+    <table id="matchTable">
+        <thead>
+            <tr>
+                <th>Incident Number</th>
+                <th>Incident Type</th>
+                <th>Overrule or Confirmation</th>
+                <th>Description</th>
+                <th>Training Clip?</th>
+                <th>VAR Feedback</th>
+                <th>RO Feedback</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <td id="num_inc">1</td>
+            <td><input type="text" id="inc_type" /></td>
+            <td><select name="Confirm" id="confirm">
+                  <option value="Confirm">Confirm</option>
+                  <option value="Overrule">Overrule</option>
+                </select></td>
+            <td><input type="text" id="description" /></td>
+            <td><input type="text" id="training" /></td>
+            <td><input type="text" id="varfeed" /></td>
+            <td><input type="text" id="rofeed" /></td>
+        </tbody>
+        <br>
+
+    </table>
+    <br>
+    <button class="button" onclick="addRow();">Add Row</button>
+
+    <form>
         <b><h2>QUIRKS AND IMPROVEMENTS</h2></b>
         <br>
         <textarea rows="10" cols="90" id="improvements" wrap="hard" placeholder="Impovements Made"></textarea><br>
@@ -248,6 +278,15 @@
 
         <br>
     </form>
+
+
+    <!-- create table here. Create insertrow to generate HTML <td id=inc+'rownum'>-->
+
+
+
+
+    <br>
+
     <button type="button" class="button" onclick="generate();">Generate PDF</button>
 
 
