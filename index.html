@@ -32,8 +32,11 @@
         <h1>Hawk-Eye MLS Match Report</h1>
     </div><br>
     <!-- <input type="text" class="form-control" id="team1" placeholder="Home Team"/><br> -->
-    <select id="team1" class="dropdown">
-        <option value="">Select home team</option>
+    <form class="row">
+
+        <input list="home_teams" id="team1" placeholder="Home Team">
+
+        <datalist id="home_teams">
           <option value="Atlanta United FC">Atlanta United FC</option>
           <option value="Chicago Fire">Chicago Fire</option>
           <option value="Colorado Rapids">Colorado Rapids</option>
@@ -58,10 +61,14 @@
           <option value="Seattle Sounders">Seattle Sounders</option>
           <option value="Sporting K.C.">Sporting K.C.</option>
           <option value="Vancouver Whitecaps">Vancouver Whitecaps</option>
-        </select>
-    <br>
-    <select id="team2" class="dropdown">
-            <option value="">Select away team</option>
+</datalist>
+        <!--    <select id="team1" class="dropdown">-->
+
+        <!--        </select>-->
+        <br>
+        <input list="away_teams" id="team2" placeholder="Away Team">
+
+        <datalist id="away_teams">
           <option value="Atlanta United FC">Atlanta United FC</option>
           <option value="Chicago Fire">Chicago Fire</option>
           <option value="Colorado Rapids">Colorado Rapids</option>
@@ -86,10 +93,10 @@
           <option value="Seattle Sounders">Seattle Sounders</option>
           <option value="Sporting K.C.">Sporting K.C.</option>
           <option value="Vancouver Whitecaps">Vancouver Whitecaps</option>
-        </select>
-    <br>
-        <select id="stadium" class="dropdown">
-            <option value="">Select stadium</option>
+        </datalist>
+        <br>
+        <input list="stadiums" id="stadium" placeholder="Stadium">
+        <datalist id="stadiums">
           <option value="Avaya Stadium">Avaya Stadium</option>
           <option value="BBVA Compass Stadium">BBVA Compass Stadium</option>
           <option value="BC Place">BC Place</option>
@@ -111,16 +118,15 @@
           <option value="Toyota Park">Toyota Park</option>
           <option value="Toyota Stadium">Toyota Stadium</option>
           <option value="Yankee Stadium">Yankee Stadium</option>
-        </select>
-    <form class="row">
-        <input type="text" id="date" value="" placeholder="Date" class="form-control" /><br>
+        </datalist>
+        <br>
+        <input type="text" id="date" value="" placeholder="Date (i.e. 10.06.17)" /><br>
         <input type="text" id="var" value="" placeholder="VAR Name" /><br>
         <input type="text" id="avar" value="" placeholder="AVAR Name" /><br>
         <input type="text" id="operator" value="" placeholder="Operator" /><br>
         <input type="text" id="kickoff" value="" placeholder="Kick-off Time" /><br>
 
         <!--VAR + AVAR Ratings-->
-
         <br>
         <h2>VAR RATINGS</h2>
         <br>
@@ -159,7 +165,7 @@
         <input type="text" id="understand" value="" placeholder="General understanding of Video Review System" /><br>
         <input type="text" id="competent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
         <br>
-<!--
+        <!--
         <b><i>Referees</i></b>
         <br>
         <input type="text" id="refchecklist" value="" placeholder="Completing Checklist in a timely manner" /><br>
@@ -178,10 +184,10 @@
 
         <b><h2>MATCH REPORT</h2></b>
         <br>
-        <input type="text" id="num_incident" value="" placeholder="Number of Incidents"/><br>
+        <input type="text" id="num_incident" value="" placeholder="Number of Incidents" /><br>
         <input type="text" id="inc_type" value="" placeholder="Incident Type" /><br>
         <input type="text" id="confirm" value="" placeholder="Confirm or Overrule" /><br>
-        <input type="text" id="link" value="" placeholder="Link" /><br>
+        <input type="text" id="link" target="_blank" value="" placeholder="Link" /><br>
         <input type="text" id="hardware" value="" placeholder="Hardware Issues" /><br>
         <input type="text" id="software" value="" placeholder="Software Issues" /><br>
         <input type="text" id="audio" value="" placeholder="Audio Issues" /><br>
