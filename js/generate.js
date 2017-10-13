@@ -41,27 +41,29 @@ function generate() {
     var ltrcompetent = document.getElementById("competent").value;
 
 
-    var numIncidents = document.getElementById("num_inc").value;
-    var incType = document.getElementById("inc_type").value;
-    var description = document.getElementById("description").value;
-    var confirm = document.getElementById("confirm").value;
-    var training = document.getElementById("training").value;
-    var varfeed = document.getElementById("varfeed").value;
-    var rofeed = document.getElementById("rofeed").value;
+//    var numIncidents = document.getElementById("num_inc").value;
+//    var incType = document.getElementById("inc_type").value;
+//    var description = document.getElementById("description").value;
+//    var confirm = document.getElementById("confirm").value;
+//    var training = document.getElementById("training").value;
+//    var varfeed = document.getElementById("varfeed").value;
+//    var rofeed = document.getElementById("rofeed").value;
 
-    //    var table = document.getElementById("matchTable");
+    var matches = [];
+    var table = document.getElementById("matchTable");
     //    var tableArr = [];
-    //        for (var i = 1; i < table.rows.length; i++) {
-    //            tableArr.push({
-    //                numIncidents: table.rows[i].cells[0].innerHTML,
-    //                incType: table.rows[i].cells[1].innerHTML,
-    //                description: table.rows[i].cells[2].innerHTML,
-    //                confirm: table.rows[i].cells[3].innerHTML,
-    //                training: table.rows[i].cells[4].innerHTML,
-    //                varfeed: table.rows[i].cells[5].innerHTML,
-    //                rofeed: table.rows[i].cells[6].innerHTML
-    //            });
-    //        }
+    //    for (var i = 1; i < table.rows.length; i++) {
+    //        tableArr.push({
+    //            numIncidents: table.rows[i].cells[0].innerHTML,
+    //            incType: table.rows[i].cells[1].innerHTML,
+    //            description: table.rows[i].cells[2].innerHTML,
+    //            confirm: table.rows[i].cells[3].innerHTML,
+    //            training: table.rows[i].cells[4].innerHTML,
+    //            varfeed: table.rows[i].cells[5].innerHTML,
+    //            rofeed: table.rows[i].cells[6].innerHTML
+    //        });
+    //    }
+
 
 
     var hardware = document.getElementById("hardware").value;
@@ -239,7 +241,7 @@ function generate() {
 
     doc.autoTable(ratecolumns, raterows, {
         //margin: {horizontal:5,top: 20},
-        padding: {
+        cellpadding: {
             top: 10
         },
         theme: 'grid',
@@ -309,7 +311,7 @@ function generate() {
 
     doc.autoTable(ltrcolumns, ltrrows, {
         //margin: {horizontal:5,top: 20},
-        padding: {
+        cellpadding: {
             top: 10
         },
         theme: 'grid',
@@ -324,62 +326,78 @@ function generate() {
         }
     });
 
-    //Match Report Rating  TABLE
-    //doc.text("RATINGS DETAILS", 14, 75);
-    var links = [];
+//    Match Report Rating  TABLE
+//    doc.text("RATINGS DETAILS", 14, 75);
+//    
+//        var inccolumns = [
+//            {
+//                title: "Incident Number",
+//                dataKey: "incNum"
+//            },
+//            {
+//                title: "Incident Type",
+//                dataKey: "type"
+//            },
+//            {
+//                title: "Correction or Overrule",
+//                dataKey: "correct"
+//            },
+//            {
+//                title: "Description",
+//                dataKey: "description"
+//            },
+//            {
+//                title: "Training Clip",
+//                dataKey: "training"
+//            },
+//            {
+//                title: "VAR Feedback",
+//                dataKey: "varfeed"
+//            },
+//            {
+//                title: "RO Feedback",
+//                dataKey: "rofeed"
+//            }
+//            ];
+//    
+//        var incrows = [
+//    
+//            {
+//                "incNum": numIncidents,
+//                "type": incType,
+//                "correct": confirm,
+//                "description": description,
+//                "training": training,
+//                "varfeed": varfeed,
+//                "rofeeed": rofeed
+//                }
+//                ]; //Match table stuff //match table
 
 
-    //        for (var i = 1; i < table.rows.length; i++) {
-
-    //    }
-    var inccolumns = [
-        {
-            title: "Incident Number",
-            dataKey: "incNum"
-        },
-        {
-            title: "Incident Type",
-            dataKey: "type"
-        },
-        {
-            title: "Correction or Overrule",
-            dataKey: "correct"
-        },
-        {
-            title: "Description",
-            dataKey: "description"
-        },
-        {
-            title: "Training Clip",
-            dataKey: "training"
-        },
-        {
-            title: "VAR Feedback",
-            dataKey: "varfeed"
-        },
-        {
-            title: "RO Feedback",
-            dataKey: "rofeed"
+    var matcolumns = ["Incident Number", "Incident Type", "Overrule or Confirmation", "Description", "Training Clip?", "VAR Feedback", "RO Feedback"];
+    var matdata = tableToJson($("#tableBody").get(0), columns);
+    
+    function tableToJson(table, matcolumns) {
+      var data = [];
+      // go through cells
+      for (var i = 0; i < table.rows.length; i++) {
+        var tableRow = table.rows[i];
+        var input = table.getElementsByTagName( 'input' ); 
+        var rowData = [];
+        for (var j = 0; j < tableRow.cells.length; j++) {
+            rowData.push(tableRow.cells[j].innerHTML);
         }
-        ];
+          console.log(rowData);
+        data.push(rowData);
+        //console.log(data);
+      }
 
-    var incrows = [
-
-        {
-            "incNum": numIncidents,
-            "type": incType,
-            "correct": confirm,
-            "description": description,
-            "training": training,
-            "varfeed": varfeed,
-            "rofeeed": rofeed
-            }
-
-            ];
-
-    doc.autoTable(inccolumns, incrows, {
+      return data;
+}
+    
+    doc.autoTable(matcolumns, matdata, {
         //margin: {horizontal:5,top: 20},
-        padding: {
+        cellpadding: {
             top: 10
         },
         theme: 'grid',
@@ -388,6 +406,9 @@ function generate() {
             overflow: 'linebreak'
         },
         columnStyles: {
+            incident: {
+                columnWidth: 80
+            },
             description: {
                 columnWidth: 150
             },
@@ -459,7 +480,7 @@ function generate() {
 
     doc.autoTable(qicolumns, qirows, {
         //margin: {horizontal:5,top: 20},
-        padding: {
+        cellpadding: {
             top: 10
         },
         theme: 'grid',
@@ -471,7 +492,7 @@ function generate() {
 
     doc.autoTable(imcolumns, imrows, {
         //margin: {horizontal:5,top: 20},
-        padding: {
+        cellpadding: {
             top: 10
         },
         theme: 'grid',
@@ -484,7 +505,7 @@ function generate() {
 
     doc.autoTable(cocolumns, corows, {
         //margin: {horizontal:5,top: 20},
-        padding: {
+        cellpadding: {
             top: 10
         },
         theme: 'grid',
@@ -500,22 +521,20 @@ function generate() {
         doc.setTextColor(40);
         doc.setFontStyle('normal');
         styles: {
-            fillColor: "#2fba8e"
+            fillColor: "#fc511f"
         }; //doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
         doc.text(team1 + " vs " + team2 + " Match Report", data.settings.margin.left, 50);
     };
 
-    //      doc.autoTable(res.columns, res.data, options);
-    //      doc.autoTable(rate.columns, rate.data, options);
-    //      doc.autoTable(match.columns, match.data, options);
+
     doc.save(date + " " + team1 + " vs " + team2 + '.pdf');
 
     var pdf = doc.output('blob');
-    console.log(pdf)
+    //console.log(pdf);
     var data = new FormData();
     data.append("data", pdf);
     var xhr = new XMLHttpRequest();
-    xhr.open('post', '../php/upload.php', true);
-    xhr.send(data);
+    //xhr.open('post', 'upload.php', true);
+    //xhr.send(data);
 
 }
