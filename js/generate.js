@@ -53,7 +53,6 @@ function generate() {
 
     var matches = [];
     var table = document.getElementById("matchTable");
-   
 
 
 
@@ -81,19 +80,19 @@ function generate() {
 
     if (status == "GREEN") {
         doc.setTextColor(0, 255, 0);
-        doc.setFontSize(9);
+        doc.setFontSize(12);
         doc.myText("GREEN", {
             align: "center"
         }, 20, 75);
     } else if (status == "ORANGE") {
         doc.setTextColor(255, 153, 0);
-        doc.setFontSize(9);
+        doc.setFontSize(12);
         doc.myText("ORANGE", {
             align: "center"
         }, 20, 75);
     } else if (status == "RED") {
         doc.setTextColor(255, 0, 0);
-        doc.setFontSize(9);
+        doc.setFontSize(12);
         doc.myText("RED", {
             align: "center"
         }, 20, 75);
