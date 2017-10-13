@@ -9,6 +9,8 @@ function generate() {
     var doc = new jsPDF('p', 'pt');
     var links = [];
     //VAR Defs
+
+    var status = document.getElementById("status").value;
     var team1 = document.getElementById("team1").value;
     var team2 = document.getElementById("team2").value;
 
@@ -41,28 +43,17 @@ function generate() {
     var ltrcompetent = document.getElementById("competent").value;
 
 
-//    var numIncidents = document.getElementById("num_inc").value;
-//    var incType = document.getElementById("inc_type").value;
-//    var description = document.getElementById("description").value;
-//    var confirm = document.getElementById("confirm").value;
-//    var training = document.getElementById("training").value;
-//    var varfeed = document.getElementById("varfeed").value;
-//    var rofeed = document.getElementById("rofeed").value;
+    //    var numIncidents = document.getElementById("num_inc").value;
+    //    var incType = document.getElementById("inc_type").value;
+    //    var description = document.getElementById("description").value;
+    //    var confirm = document.getElementById("confirm").value;
+    //    var training = document.getElementById("training").value;
+    //    var varfeed = document.getElementById("varfeed").value;
+    //    var rofeed = document.getElementById("rofeed").value;
 
     var matches = [];
     var table = document.getElementById("matchTable");
-    //    var tableArr = [];
-    //    for (var i = 1; i < table.rows.length; i++) {
-    //        tableArr.push({
-    //            numIncidents: table.rows[i].cells[0].innerHTML,
-    //            incType: table.rows[i].cells[1].innerHTML,
-    //            description: table.rows[i].cells[2].innerHTML,
-    //            confirm: table.rows[i].cells[3].innerHTML,
-    //            training: table.rows[i].cells[4].innerHTML,
-    //            varfeed: table.rows[i].cells[5].innerHTML,
-    //            rofeed: table.rows[i].cells[6].innerHTML
-    //        });
-    //    }
+   
 
 
 
@@ -81,13 +72,32 @@ function generate() {
         align: "center"
     }, 0, 35);
 
-
     doc.setTextColor(0, 0, 255);
     doc.setFontSize(9);
     doc.myText(link, {
         align: "center"
     }, 0, 55);
 
+
+    if (status == "GREEN") {
+        doc.setTextColor(0, 255, 0);
+        doc.setFontSize(9);
+        doc.myText("GREEN", {
+            align: "center"
+        }, 20, 75);
+    } else if (status == "ORANGE") {
+        doc.setTextColor(255, 153, 0);
+        doc.setFontSize(9);
+        doc.myText("ORANGE", {
+            align: "center"
+        }, 20, 75);
+    } else if (status == "RED") {
+        doc.setTextColor(255, 0, 0);
+        doc.setFontSize(9);
+        doc.myText("RED", {
+            align: "center"
+        }, 20, 75);
+    }
 
     //TEAM v TEAM TABLE
     var columns = [
@@ -114,7 +124,7 @@ function generate() {
         ];
 
     doc.autoTable(columns, rows, {
-        startY: doc.autoTableEndPosY() + 70,
+        startY: doc.autoTableEndPosY() + 90,
         styles: {
             overflow: 'linebreak'
         },
@@ -326,82 +336,82 @@ function generate() {
         }
     });
 
-//    Match Report Rating  TABLE
-//    doc.text("RATINGS DETAILS", 14, 75);
-//    
-//        var inccolumns = [
-//            {
-//                title: "Incident Number",
-//                dataKey: "incNum"
-//            },
-//            {
-//                title: "Incident Type",
-//                dataKey: "type"
-//            },
-//            {
-//                title: "Correction or Overrule",
-//                dataKey: "correct"
-//            },
-//            {
-//                title: "Description",
-//                dataKey: "description"
-//            },
-//            {
-//                title: "Training Clip",
-//                dataKey: "training"
-//            },
-//            {
-//                title: "VAR Feedback",
-//                dataKey: "varfeed"
-//            },
-//            {
-//                title: "RO Feedback",
-//                dataKey: "rofeed"
-//            }
-//            ];
-//    
-//        var incrows = [
-//    
-//            {
-//                "incNum": numIncidents,
-//                "type": incType,
-//                "correct": confirm,
-//                "description": description,
-//                "training": training,
-//                "varfeed": varfeed,
-//                "rofeeed": rofeed
-//                }
-//                ]; //Match table stuff //match table
+    //    Match Report Rating  TABLE
+    //    doc.text("RATINGS DETAILS", 14, 75);
+    //    
+    //        var inccolumns = [
+    //            {
+    //                title: "Incident Number",
+    //                dataKey: "incNum"
+    //            },
+    //            {
+    //                title: "Incident Type",
+    //                dataKey: "type"
+    //            },
+    //            {
+    //                title: "Correction or Overrule",
+    //                dataKey: "correct"
+    //            },
+    //            {
+    //                title: "Description",
+    //                dataKey: "description"
+    //            },
+    //            {
+    //                title: "Training Clip",
+    //                dataKey: "training"
+    //            },
+    //            {
+    //                title: "VAR Feedback",
+    //                dataKey: "varfeed"
+    //            },
+    //            {
+    //                title: "RO Feedback",
+    //                dataKey: "rofeed"
+    //            }
+    //            ];
+    //    
+    //        var incrows = [
+    //    
+    //            {
+    //                "incNum": numIncidents,
+    //                "type": incType,
+    //                "correct": confirm,
+    //                "description": description,
+    //                "training": training,
+    //                "varfeed": varfeed,
+    //                "rofeeed": rofeed
+    //                }
+    //                ]; //Match table stuff //match table
 
 
     var matcolumns = ["Incident Number", "Incident Type", "Overrule or Confirmation", "Description", "Training Clip?", "VAR Feedback", "RO Feedback"];
     var matdata = tableToJson($("#tableBody").get(0), columns);
-    
+
     function tableToJson(table, matcolumns) {
-      var data = [];
-      // go through cells
-      for (var i = 0; i < table.rows.length; i++) {
-        var tableRow = table.rows[i];
-        var input = table.getElementsByTagName( 'input' ); 
-        var rowData = [];
-        for (var j = 0; j < tableRow.cells.length; j++) {
-            //rowData.push(tableRow.cells[0].innerText);
+        var data = [];
+        // go through cells
+        for (var i = 0; i < table.rows.length; i++) {
+            var tableRow = table.rows[i];
+            var input = table.getElementsByTagName('input');
+            var rowData = [];
+            for (var j = 0; j < tableRow.cells.length; j++) {
+                //rowData.push(tableRow.cells[0].innerText);
 
-			if(typeof $(tableRow.cells[j]).children().val() === 'undefined'){
-					rowData.push($(tableRow.cells[j]).text());
-            }else{
-				rowData.push($(tableRow.cells[j]).children().val());
+                if (typeof $(tableRow.cells[j]).children().val() === 'undefined') {
+                    rowData.push($(tableRow.cells[j]).text());
+                } else {
+                    rowData.push($(tableRow.cells[j]).children().val());
+                }
+
             }
-            
+            console.log(rowData);
+            data.push(rowData);
+            //console.log(data);
         }
-          console.log(rowData);
-        data.push(rowData);
-        //console.log(data);
-      }
 
-      return data;
-}
-    
+        return data;
+    }
+
     doc.autoTable(matcolumns, matdata, {
         //margin: {horizontal:5,top: 20},
         cellpadding: {
@@ -410,7 +420,8 @@ function generate() {
         theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
-            overflow: 'linebreak', columnWidth: 'auto'
+            overflow: 'linebreak',
+            columnWidth: 'auto'
         }
     });
 
