@@ -385,7 +385,8 @@ function generate() {
         var input = table.getElementsByTagName( 'input' ); 
         var rowData = [];
         for (var j = 0; j < tableRow.cells.length; j++) {
-            rowData.push(tableRow.cells[j].innerHTML);
+            //rowData.push(tableRow.cells[0].innerText);
+            rowData.push($(tableRow.cells[j]).children().val());
         }
           console.log(rowData);
         data.push(rowData);
@@ -403,24 +404,7 @@ function generate() {
         theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
-            overflow: 'linebreak'
-        },
-        columnStyles: {
-            incident: {
-                columnWidth: 80
-            },
-            description: {
-                columnWidth: 150
-            },
-            training: {
-                columnWidth: 40
-            },
-            rofeed: {
-                columnWidth: 100
-            },
-            varfeed: {
-                columnWidth: 100
-            }
+            overflow: 'linebreak', columnWidth: 'auto'
         }
     });
 
