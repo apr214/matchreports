@@ -35,6 +35,16 @@
     <!-- <input type="text" class="form-control" id="team1" placeholder="Home Team"/><br> -->
     <form class="row">
 
+        <input list="stadstatus" id="status" placeholder="Stadium Status">
+
+        <datalist id="stadstatus">
+          <option value="GREEN">GREEN</option>
+          <option value="ORANGE">ORANGE</option>
+          <option value="RED">RED</option>
+        </datalist>
+        <br>
+        <br>
+
         <input list="home_teams" id="team1" placeholder="Home Team">
 
         <datalist id="home_teams">
@@ -253,7 +263,7 @@
         </thead>
         <tbody id="tableBody">
             <td>1</td>
-<!--            <td><input type="text" id="inc_type"/></td>-->
+            <!--            <td><input type="text" id="inc_type"/></td>-->
             <td><select name="type" id="inc_type" class="dropdown">
                   <option value="RED">RED</option>
                   <option value="PK">PK</option>
