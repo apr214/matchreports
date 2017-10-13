@@ -386,7 +386,13 @@ function generate() {
         var rowData = [];
         for (var j = 0; j < tableRow.cells.length; j++) {
             //rowData.push(tableRow.cells[0].innerText);
-            rowData.push($(tableRow.cells[j]).children().val());
+
+			if(typeof $(tableRow.cells[j]).children().val() === 'undefined'){
+					rowData.push($(tableRow.cells[j]).text());
+            }else{
+				rowData.push($(tableRow.cells[j]).children().val());
+            }
+            
         }
           console.log(rowData);
         data.push(rowData);
