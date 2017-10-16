@@ -251,11 +251,6 @@ function generate() {
             "notes": anotes
         },
         ];
-    
-    doc.myText("RATINGS TABLES", {
-        align: "center",
-        startY: doc.autoTableEndPosY() + 50,
-    }, 150, 35);
 
     doc.setTextColor(0, 0, 255);
     doc.setFontSize(9);
