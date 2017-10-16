@@ -486,7 +486,7 @@ function generate() {
 
         {
             "quirks": "",
-            "improvements": improvem,
+            "improvements": improve,
             "comms": ""
         }
 
