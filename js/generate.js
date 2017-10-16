@@ -10,6 +10,10 @@ function generate() {
     var links = [];
     //VAR Defs
 
+    
+//    var headerImgData = im"./headerImgData";
+//    doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
+    
     var status = document.getElementById("status").value;
     var team1 = document.getElementById("team1").value;
     var team2 = document.getElementById("team2").value;
@@ -37,6 +41,7 @@ function generate() {
     var aprotocol = document.getElementById("aprotocol").value;
     var anotes = document.getElementById("anotes").value;
 
+    var ltrname = document.getElementById("ltrname").value;
     var ltrchecklist = document.getElementById("checklist").value;
     var ltrrigging = document.getElementById("rigging").value;
     var ltrunderstand = document.getElementById("understand").value;
@@ -64,7 +69,6 @@ function generate() {
     var quirks = document.getElementById("quirks").value;
     var improve = document.getElementById("improvements").value;
     var gen_comms = document.getElementById("gen_comments").value;
-    var header = "LTR Ratings";
 
     //doc.text(team1 + " vs " + team2 + " Match Report", 210, 35);
     doc.myText(team1 + " vs " + team2 + " Match Report", {
@@ -247,6 +251,17 @@ function generate() {
             "notes": anotes
         },
         ];
+    
+    doc.myText("RATINGS TABLES", {
+        align: "center",
+        startY: doc.autoTableEndPosY() + 50,
+    }, 150, 35);
+
+    doc.setTextColor(0, 0, 255);
+    doc.setFontSize(9);
+    doc.myText(link, {
+        align: "center"
+    }, 0, 55);
 
     doc.autoTable(ratecolumns, raterows, {
         //margin: {horizontal:5,top: 20},
@@ -275,6 +290,10 @@ function generate() {
 
     var ltrcolumns = [
         {
+            title: "LTR Name",
+            dataKey: "ltrname"
+        },
+        {
             title: "Completing Checklist Timely",
             dataKey: "checklist"
         },
@@ -294,6 +313,7 @@ function generate() {
 
     var ltrrows = [
         {
+            "ltrname": ltrname,
             "checklist": ltrchecklist,
             "rigging": ltrrigging,
             "understand": ltrunderstand,
@@ -326,7 +346,7 @@ function generate() {
         theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
-            overflow: 'linebreak',
+            overflow: 'linebreak', columnWidth: 'auto'
         },
         columnStyles: {
             checklist: {
@@ -419,8 +439,12 @@ function generate() {
         theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
-            overflow: 'linebreak',
-            columnWidth: 'auto'
+            overflow: 'linebreak'
+        },
+        columnStyles: {
+            description: {
+                columnWidth: 150
+            }
         }
     });
 
@@ -462,7 +486,7 @@ function generate() {
 
         {
             "quirks": "",
-            "improvements": improvements,
+            "improvements": improvem,
             "comms": ""
         }
 
@@ -522,7 +546,7 @@ function generate() {
         doc.setFontStyle('normal');
         styles: {
             fillColor: "#fc511f"
-        }; //doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
+        }; 
         doc.text(team1 + " vs " + team2 + " Match Report", data.settings.margin.left, 50);
     };
 
