@@ -298,6 +298,7 @@ function generate() {
         },
         {
             title: "General Understanding",
+         
             dataKey: "understand"
         },
         {
@@ -314,23 +315,6 @@ function generate() {
             "understand": ltrunderstand,
             "helpful": ltrcompetent
         }
-//
-//        {
-//            "comm": "b) Referees",
-//            "checklist": ltrrefchecklist,
-//            "rigging": ltrrefrigging,
-//            "understand": ltrrefunderstand,
-//            "helpful": ltrrefcompetent
-//        },
-//
-//        {
-//            "comm": "c) Stadium Personnel",
-//            "checklist": ltrstachecklist,
-//            "rigging": ltrstarigging,
-//            "understand": ltrstaunderstand,
-//            "helpful": ltrstacompetent
-//        }
-
         ];
 
     doc.autoTable(ltrcolumns, ltrrows, {
@@ -349,6 +333,59 @@ function generate() {
             }
         }
     });
+    
+    
+    var isscolumns = [
+        {
+            title: "Hardware Issues",
+            dataKey: "hardware"
+        },
+        {
+            title: "Software Issues",
+            dataKey: "software"
+        },
+        {
+            title: "Audio Issues",
+            dataKey: "audio"
+        },
+        {
+            title: "Comments",
+         
+            dataKey: "comments"
+        }
+        ];
+
+    var issrows = [
+        {
+            "hardware": hardware,
+            "software": software,
+            "audio": audio,
+            "comments": comments
+        }];
+    
+    doc.autoTable(isscolumns, issrows, {
+        //margin: {horizontal:5,top: 20},
+        cellpadding: {
+            top: 10
+        },
+        theme: 'grid',
+        startY: doc.autoTableEndPosY() + 50,
+        styles: {
+            overflow: 'linebreak', columnWidth: 'auto'
+        },
+        columnStyles: {
+            hardware: {
+                columnWidth: 90
+            },
+            software: {
+                columnWidth: 90
+            },
+            audio: {
+                columnWidth: 90    
+            }
+        }
+    });
+
 
     //    Match Report Rating  TABLE
     //    doc.text("RATINGS DETAILS", 14, 75);
@@ -434,7 +471,7 @@ function generate() {
         theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
         styles: {
-            overflow: 'linebreak'
+            overflow: 'linebreak', columnWidth: 'auto'
         },
         columnStyles: {
             description: {
