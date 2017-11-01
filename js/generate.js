@@ -435,7 +435,7 @@ function generate() {
     //                ]; //Match table stuff //match table
 
 
-    var matcolumns = ["Incident Number", "Incident Type", "Overrule or Confirmation", "Description", "Training Clip?", "VAR Feedback", "RO Feedback"];
+    var matcolumns = ["Inc#", "Type", "O, C, NG, G", "Description", "Training Clip?", "VAR Feedback", "RO Feedback"];
     var matdata = tableToJson($("#tableBody").get(0), columns);
 
     function tableToJson(table, matcolumns) {
@@ -470,12 +470,31 @@ function generate() {
         },
         theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
+        tableWidth: 'auto',
         styles: {
-            overflow: 'linebreak', columnWidth: 'auto'
+            overflow: 'linebreak'
         },
         columnStyles: {
-            description: {
-                columnWidth: 150
+            0: {
+                columnWidth: 40
+            },
+            1: {
+                columnWidth: 50
+            },
+            2: {
+                columnWidth: 50    
+            },
+            3: {
+                columnWidth: 170
+            },
+            4: {
+                columnWidth: 55
+            },
+            5: {
+                columnWidth: 80
+            },
+            6: {
+                columnWidth: 80
             }
         }
     });
