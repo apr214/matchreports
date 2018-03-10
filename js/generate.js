@@ -437,6 +437,10 @@ function generate() {
 
     var matcolumns = ["Inc#", "Type", "O, C, NG, G", "Description", "Training Clip?", "VAR Feedback", "RO Feedback"];
     var matdata = tableToJson($("#tableBody").get(0), columns);
+    
+    
+    var racolumns = ["RA Name", "Ontime?", "Rating", "Notes"];
+    var radata = tableToJson($("#raBody").get(0), columns);
 
     function tableToJson(table, matcolumns) {
         var data = [];
@@ -463,6 +467,8 @@ function generate() {
         return data;
     }
 
+    
+    
     doc.autoTable(matcolumns, matdata, {
         //margin: {horizontal:5,top: 20},
         cellpadding: {
@@ -479,7 +485,7 @@ function generate() {
                 columnWidth: 40
             },
             1: {
-                columnWidth: 50
+                columnWidth: 55
             },
             2: {
                 columnWidth: 50    
@@ -499,7 +505,58 @@ function generate() {
         }
     });
 
+    //RA table
+    function tableToJson(table, racolumns) {
+        var data = [];
+        // go through cells
+        for (var i = 0; i < table.rows.length; i++) {
+            var tableRow = table.rows[i];
+            var input = table.getElementsByTagName('input');
+            var rowData = [];
+            for (var j = 0; j < tableRow.cells.length; j++) {
+                //rowData.push(tableRow.cells[0].innerText);
 
+                if (typeof $(tableRow.cells[j]).children().val() === 'undefined') {
+                    rowData.push($(tableRow.cells[j]).text());
+                } else {
+                    rowData.push($(tableRow.cells[j]).children().val());
+                }
+
+            }
+            console.log(rowData);
+            data.push(rowData);
+            //console.log(data);
+        }
+
+        return data;
+    }
+
+    doc.autoTable(racolumns, radata, {
+        //margin: {horizontal:5,top: 20},
+        cellpadding: {
+            top: 10
+        },
+        theme: 'grid',
+        startY: doc.autoTableEndPosY() + 50,
+        tableWidth: 'auto',
+        styles: {
+            overflow: 'linebreak'
+        },
+        columnStyles: {
+//            0: {
+//                columnWidth: 40
+//            },
+//            1: {
+//                columnWidth: 55
+//            },
+//            2: {
+//                columnWidth: 50    
+//            },
+            3: {
+                columnWidth: 200
+            }
+        }
+    });
     //Quirks Report Rating  TABLE
     //doc.text("RATINGS DETAILS", 14, 75);
 
