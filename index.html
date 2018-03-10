@@ -4,7 +4,9 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js'></script>
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src="js/addRow.js"></script>
+    <script src="js/addRowRA.js"></script>
     <script src="js/generate.js"></script>
+    <script src="js/email.js"></script>
     <script src="js/server.js"></script>
     <script src="js/nodemailer.js"></script>
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
@@ -223,7 +225,10 @@
         <input type="text" id="understand" value="" placeholder="General understanding of Video Review System" /><br>
         <input type="text" id="competent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
         <br>
-        <!--
+
+
+        
+    <!--
         <b><i>Referees</i></b>
         <br>
         <input type="text" id="refchecklist" value="" placeholder="Completing Checklist in a timely manner" /><br>
@@ -238,9 +243,8 @@
         <input type="text" id="staunderstand" value="" placeholder="General understanding of Video Review System" /><br>
         <input type="text" id="stacompetent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
 -->
-        <br>
-
-        <b><h2>ISSUES</h2></b>
+    <br>
+        <b><h2>QUIRKS/ISSUES</h2></b>
         <input type="text" id="hardware" value="" placeholder="Hardware Issues" /><br>
         <input type="text" id="software" value="" placeholder="Software Issues" /><br>
         <input type="text" id="audio" value="" placeholder="Audio Issues" /><br>
@@ -290,6 +294,42 @@
     </table>
     <br>
     <button class="button" onclick="addRow();">Add Row</button>
+    
+    <!-- RA SECTION HERE 
+     name, contact info, time in/time out, a rating for them 1-3 (1 being a candidate we want to avoid in the future, 2 being eh, 3 being our ideal RA candidate), notes-->
+     <br>
+        <b><h2>RA RATINGS</h2></b>
+        <br>
+        
+    <table id="raTable">
+        <thead>
+            <tr>
+<!--                <th></th>-->
+                <th>RA Name</th>
+                <th>Arrival Time</th>
+                <th>Rating</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody id="raBody">
+            <!--            <td><input type="text" id="inc_type"/></td>-->
+            
+            <td><input type="text" id="ra_name" value="" placeholder="RA Name" /></td>
+            <td><input type="text" id="ra_time" value="" placeholder="Arrival Time" /></td>
+            <td><select name="type" id="ra_rate" class="dropdown">
+                      <option value="NO">1</option>
+                      <option value="MAYBE">2</option>
+                      <option value="YES">3</option>
+                    </select></td>
+            <td><textarea rows="10" cols="90" id="ra_notes" wrap="hard" placeholder="RA Comments"></textarea></td>
+        <br>
+        </tbody>
+        <br>
+
+    </table>
+       <button class="button" onclick="addRowRA();">Add RA</button>
+        
+        
 
     <form>
         <b><h2>QUIRKS AND IMPROVEMENTS</h2></b>
