@@ -34,12 +34,12 @@ function generate() {
     var protocol = document.getElementById("protocol").value;
     var notes = document.getElementById("notes").value;
 
-    var acomms_var = document.getElementById("acomms_var").value;
-    var acomms_ref = document.getElementById("acomms_ref").value;
-    var acomms_ro = document.getElementById("acomms_ro").value;
-    var adecision = document.getElementById("adecision").value;
-    var aprotocol = document.getElementById("aprotocol").value;
-    var anotes = document.getElementById("anotes").value;
+//    var acomms_var = document.getElementById("acomms_var").value;
+//    var acomms_ref = document.getElementById("acomms_ref").value;
+//    var acomms_ro = document.getElementById("acomms_ro").value;
+//    var adecision = document.getElementById("adecision").value;
+//    var aprotocol = document.getElementById("aprotocol").value;
+//    var anotes = document.getElementById("anotes").value;
 
     var ltrname = document.getElementById("ltrname").value;
     var ltrchecklist = document.getElementById("checklist").value;
@@ -66,9 +66,9 @@ function generate() {
     var comments = document.getElementById("comments").value;
     var link = document.getElementById("link").value;
 
-    var quirks = document.getElementById("quirks").value;
-    var improve = document.getElementById("improvements").value;
-    var gen_comms = document.getElementById("gen_comments").value;
+//    var quirks = document.getElementById("quirks").value;
+//    var improve = document.getElementById("improvements").value;
+//    var gen_comms = document.getElementById("gen_comments").value;
 
     //doc.text(team1 + " vs " + team2 + " Match Report", 210, 35);
     doc.myText(team1 + " vs " + team2 + " Match Report", {
@@ -240,16 +240,16 @@ function generate() {
             "decrating": decision,
             "prorating": protocol,
             "notes": notes
-        },
-        {
-            "position": "AVAR",
-            "varrating": acomms_var,
-            "rorating": acomms_ro,
-            "refrating": acomms_ref,
-            "decrating": adecision,
-            "prorating": aprotocol,
-            "notes": anotes
-        },
+        }
+//        {
+//            "position": "AVAR",
+//            "varrating": acomms_var,
+//            "rorating": acomms_ro,
+//            "refrating": acomms_ref,
+//            "decrating": adecision,
+//            "prorating": aprotocol,
+//            "notes": anotes
+//        },
         ];
 
     doc.setTextColor(0, 0, 255);
@@ -441,6 +441,9 @@ function generate() {
     
     var racolumns = ["RA Name", "Ontime?", "Rating", "Notes"];
     var radata = tableToJson($("#raBody").get(0), columns);
+    
+    var qcolumns = ["Quirk/Issue", "Hardware/Software",  "Notes"];
+    var qdata = tableToJson($("#quirksBody").get(0), columns);
 
     function tableToJson(table, matcolumns) {
         var data = [];
@@ -557,95 +560,120 @@ function generate() {
             }
         }
     });
-    //Quirks Report Rating  TABLE
-    //doc.text("RATINGS DETAILS", 14, 75);
-
-    var qicolumns = [
-        {
-            title: "Quirks",
-            dataKey: "quirks"
-        }
-        ];
-
-    var imcolumns = [
-        {
-            title: "Improvements Made",
-            dataKey: "improvements"
-        }];
-
-    var cocolumns = [
-        {
-            title: "General Comments",
-            dataKey: "comms"
-        }
-        ];
-
-    var qirows = [
-
-        {
-            "quirks": quirks,
-            "improvements": "",
-            "comms": ""
-        }
-        ];
-
-
-    var imrows = [
-
-        {
-            "quirks": "",
-            "improvements": improve,
-            "comms": ""
-        }
-
-        ];
-
-    var corows = [
-
-        {
-            "quirks": "",
-            "improvements": "",
-            "comms": gen_comms
-        }
-
-        ];
-
-    doc.autoTable(qicolumns, qirows, {
+    
+    doc.autoTable(qcolumns, qdata, {
         //margin: {horizontal:5,top: 20},
         cellpadding: {
             top: 10
         },
         theme: 'grid',
         startY: doc.autoTableEndPosY() + 50,
+        tableWidth: 'auto',
         styles: {
             overflow: 'linebreak'
-        }
-    });
-
-    doc.autoTable(imcolumns, imrows, {
-        //margin: {horizontal:5,top: 20},
-        cellpadding: {
-            top: 10
         },
-        theme: 'grid',
-        startY: doc.autoTableEndPosY() + 70,
-        styles: {
-            overflow: 'linebreak'
+        columnStyles: {
+            0: {
+                columnWidth: 200
+            },
+            2: {
+                columnWidth: 200
+            }
+//            2: {
+//                columnWidth: 50    
+//            }
+//            
         }
     });
-
-
-    doc.autoTable(cocolumns, corows, {
-        //margin: {horizontal:5,top: 20},
-        cellpadding: {
-            top: 10
-        },
-        theme: 'grid',
-        startY: doc.autoTableEndPosY() + 50,
-        styles: {
-            overflow: 'linebreak'
-        }
-    });
+//    //Quirks Report Rating  TABLE
+//    //doc.text("RATINGS DETAILS", 14, 75);
+//
+//    var qicolumns = [
+//        {
+//            title: "Quirks",
+//            dataKey: "quirks"
+//        }
+//        ];
+//
+//    var imcolumns = [
+//        {
+//            title: "Improvements Made",
+//            dataKey: "improvements"
+//        }];
+//
+//    var cocolumns = [
+//        {
+//            title: "General Comments",
+//            dataKey: "comms"
+//        }
+//        ];
+//
+//    var qirows = [
+//
+//        {
+//            "quirks": quirks,
+//            "improvements": "",
+//            "comms": ""
+//        }
+//        ];
+//
+//
+//    var imrows = [
+//
+//        {
+//            "quirks": "",
+//            "improvements": improve,
+//            "comms": ""
+//        }
+//
+//        ];
+//
+//    var corows = [
+//
+//        {
+//            "quirks": "",
+//            "improvements": "",
+//            "comms": gen_comms
+//        }
+//
+//        ];
+//
+//    doc.autoTable(qicolumns, qirows, {
+//        //margin: {horizontal:5,top: 20},
+//        cellpadding: {
+//            top: 10
+//        },
+//        theme: 'grid',
+//        startY: doc.autoTableEndPosY() + 50,
+//        styles: {
+//            overflow: 'linebreak'
+//        }
+//    });
+//
+//    doc.autoTable(imcolumns, imrows, {
+//        //margin: {horizontal:5,top: 20},
+//        cellpadding: {
+//            top: 10
+//        },
+//        theme: 'grid',
+//        startY: doc.autoTableEndPosY() + 70,
+//        styles: {
+//            overflow: 'linebreak'
+//        }
+//    });
+//
+//
+//    doc.autoTable(cocolumns, corows, {
+//        //margin: {horizontal:5,top: 20},
+//        cellpadding: {
+//            top: 10
+//        },
+//        theme: 'grid',
+//        startY: doc.autoTableEndPosY() + 50,
+//        styles: {
+//            overflow: 'linebreak'
+//        }
+//    });
 
 
     var header = function (data) {
