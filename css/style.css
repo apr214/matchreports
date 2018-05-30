@@ -11,8 +11,12 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: Montserrat;
+  font-family: sans-serif;
   background: #ffa556;
+}
+
+title {
+    font-family: sans-serif;
 }
 
 /*
@@ -325,7 +329,7 @@ table td {
 }
 
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: #2fba8e; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -336,4 +340,12 @@ table td {
     vertical-align: middle;
 }
 
-.button2 {background-color: #008CBA;} /* Blue */
+.button2 {background-color: #008CBA;
+border: 100;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    vertical-align: middle;} /* Blue */
