@@ -61,9 +61,9 @@ function generate() {
 
 
 
-    var hardware = document.getElementById("hardware").value;
-    var software = document.getElementById("software").value;
-    var comments = document.getElementById("comments").value;
+    var quirk = document.getElementById("quirk").value;
+    var hardsoft = document.getElementById("hardsoft").value;
+    var qnotes = document.getElementById("qnotes").value;
     var link = document.getElementById("link").value;
 
 //    var quirks = document.getElementById("quirks").value;
@@ -335,56 +335,56 @@ function generate() {
     });
     
     
-    var isscolumns = [
-        {
-            title: "Hardware Issues",
-            dataKey: "hardware"
-        },
-        {
-            title: "Software Issues",
-            dataKey: "software"
-        },
-        {
-            title: "Audio Issues",
-            dataKey: "audio"
-        },
-        {
-            title: "Comments",
-         
-            dataKey: "comments"
-        }
-        ];
-
-    var issrows = [
-        {
-            "hardware": hardware,
-            "software": software,
-            "audio": audio,
-            "comments": comments
-        }];
-    
-    doc.autoTable(isscolumns, issrows, {
-        //margin: {horizontal:5,top: 20},
-        cellpadding: {
-            top: 10
-        },
-        theme: 'grid',
-        startY: doc.autoTableEndPosY() + 50,
-        styles: {
-            overflow: 'linebreak', columnWidth: 'auto'
-        },
-        columnStyles: {
-            hardware: {
-                columnWidth: 90
-            },
-            software: {
-                columnWidth: 90
-            },
-            audio: {
-                columnWidth: 90    
-            }
-        }
-    });
+//    var isscolumns = [
+//        {
+//            title: "Hardware Issues",
+//            dataKey: "hardware"
+//        },
+//        {
+//            title: "Software Issues",
+//            dataKey: "software"
+//        },
+//        {
+//            title: "Audio Issues",
+//            dataKey: "audio"
+//        },
+//        {
+//            title: "Comments",
+//         
+//            dataKey: "comments"
+//        }
+//        ];
+//
+//    var issrows = [
+//        {
+//            "hardware": hardware,
+//            "software": software,
+//            "audio": audio,
+//            "comments": comments
+//        }];
+//    
+//    doc.autoTable(isscolumns, issrows, {
+//        //margin: {horizontal:5,top: 20},
+//        cellpadding: {
+//            top: 10
+//        },
+//        theme: 'grid',
+//        startY: doc.autoTableEndPosY() + 50,
+//        styles: {
+//            overflow: 'linebreak', columnWidth: 'auto'
+//        },
+//        columnStyles: {
+//            hardware: {
+//                columnWidth: 90
+//            },
+//            software: {
+//                columnWidth: 90
+//            },
+//            audio: {
+//                columnWidth: 90    
+//            }
+//        }
+//    });
 
 
     //    Match Report Rating  TABLE
