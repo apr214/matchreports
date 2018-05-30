@@ -442,7 +442,7 @@ function generate() {
     var racolumns = ["RA Name", "Ontime?", "Rating", "Notes"];
     var radata = tableToJson($("#raBody").get(0), columns);
     
-    var qcolumns = ["Quirk/Issue", "Hardware/Software",  "Notes"];
+    var qcolumns = ["Quirk/Issue", "Hardware/Software",  "Improvements Made"];
     var qdata = tableToJson($("#quirksBody").get(0), columns);
 
     function tableToJson(table, matcolumns) {
