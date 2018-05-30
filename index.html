@@ -5,6 +5,7 @@
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src="js/addRow.js"></script>
     <script src="js/addRowRA.js"></script>
+     <script src="js/quirksRow.js"></script>
     <script src="js/generate.js"></script>
     <script src="js/email.js"></script>
     <script src="js/server.js"></script>
@@ -98,6 +99,7 @@
           <option value="FC Dallas">FC Dallas</option>
           <option value="Houston Dynamo">Houston Dynamo</option>
           <option value="LA Galaxy">LA Galaxy</option>
+          <option value="LAFC">LAFC</option>
           <option value="Minnesota United FC">Minnesota United FC</option>
           <option value="Portland Timbers">Portland Timbers</option>
           <option value="Real Salt Lake">Real Salt Lake</option>
@@ -202,6 +204,7 @@
         <br>
 
 
+<!--
         <br>
         <b><h2>AVAR RATINGS</h2></b>
         <br>
@@ -211,8 +214,9 @@
         <input type="text" id="acomms_ref" value="" placeholder="Comms with Ref" /><br>
         <input type="text" id="adecision" value="" type="number" placeholder="Decision Making & Speed" /><br>
         <input type="text" id="aprotocol" value="" placeholder="Protocol Knowledge" /><br>
-        <!--            <input type="text" id="notes" value="" placeholder="Notes" style="width: 300px; height: 200px; word-wrap: break-word;"/><br>-->
+                    <input type="text" id="notes" value="" placeholder="Notes" style="width: 300px; height: 200px; word-wrap: break-word;"/><br>
         <textarea rows="10" cols="90" id="anotes" wrap="hard" placeholder="AVAR Notes / Comments"></textarea>
+-->
 
         <br>
 
@@ -328,9 +332,39 @@
 
     </table>
        <button class="button" onclick="addRowRA();">Add RA</button>
+    
+    <br>
+        <b><h2>QUIRKS AND ISSUES</h2></b>
+        <br>
+        
+    <table id="quirksTable">
+        <thead>
+            <tr>
+<!--                <th></th>-->
+                <th>Quirk/Issue</th>
+                <th>Hardware/Software</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody id="quirksBody">
+            <!--            <td><input type="text" id="inc_type"/></td>-->
+            
+            <td><textarea rows="8" cols="75" id="quirk" value="" placeholder="Quirk/Issue"></textarea></td>
+            <td><select name="type" id="hardsoft" class="dropdown">
+                      <option value="Hardware">Hardware</option>
+                      <option value="Software">Software</option>
+                    </select></td>
+            <td><textarea rows="10" cols="90" id="qnotes" wrap="hard" placeholder="Notes"></textarea></td>
+        <br>
+        </tbody>
+        <br>
+
+    </table>
+       <button class="button" onclick="addQuirk();">Add Quirk</button>
         
         
 
+<!--
     <form>
         <b><h2>QUIRKS AND IMPROVEMENTS</h2></b>
         <br>
@@ -341,6 +375,7 @@
 
         <br>
     </form>
+-->
 
 
     <!-- create table here. Create insertrow to generate HTML <td id=inc+'rownum'>-->
