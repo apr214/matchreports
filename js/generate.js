@@ -212,7 +212,7 @@ function generate() {
 
     doc.autoTable(matcolumns, matrows, {
         //margin: {horizontal:5,top: 20},
-        startY: doc.autoTableEndPosY() + 50,
+        startY: doc.autoTableEndPosY() + 30,
         styles: {
             overflow: 'linebreak'
         },
@@ -294,18 +294,18 @@ function generate() {
         headerStyles: {
         fillColor: [237,196,157]
         },
-        startY: doc.autoTableEndPosY() + 50,
+        startY: doc.autoTableEndPosY() + 30,
         styles: {
             overflow: 'linebreak',
             columnWidth: 'auto'
         },
         columnStyles: {
             notes: {
-                columnWidth: 140
-            },
-            position: {
-                columnWidth: 60
+                columnWidth: 160
             }
+//            position: {
+//                columnWidth: 30
+//            }
         }
     });
 
@@ -356,7 +356,7 @@ function generate() {
         headerStyles: {
         fillColor: [237,196,157]
         },
-        startY: doc.autoTableEndPosY() + 50,
+        startY: doc.autoTableEndPosY() + 30,
         styles: {
             overflow: 'linebreak', columnWidth: 'auto'
         },
@@ -514,7 +514,7 @@ function generate() {
         headerStyles: {
         fillColor: [237,196,157]
         },
-        startY: doc.autoTableEndPosY() + 50,
+        startY: doc.autoTableEndPosY() + 30,
         tableWidth: 'auto',
         styles: {
             overflow: 'linebreak'
@@ -579,7 +579,7 @@ function generate() {
         headerStyles: {
         fillColor: [237,196,157]
         },
-        startY: doc.autoTableEndPosY() + 50,
+        startY: doc.autoTableEndPosY() + 30,
         tableWidth: 'auto',
         styles: {
             overflow: 'linebreak'
@@ -609,7 +609,7 @@ function generate() {
         headerStyles: {
         fillColor: [237,196,157]
         },
-        startY: doc.autoTableEndPosY() + 50,
+        startY: doc.autoTableEndPosY() + 30,
         tableWidth: 'auto',
         styles: {
             overflow: 'linebreak'
