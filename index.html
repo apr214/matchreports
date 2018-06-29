@@ -2,16 +2,16 @@
 
 <head>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js'></script>
-    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
     <script src="js/addRow.js"></script>
     <script src="js/addRowRA.js"></script>
-     <script src="js/quirksRow.js"></script>
+    <script src="js/quirksRow.js"></script>
+    <script src="js/google_script_form_ajax.js"></script>
     <script src="js/generate.js"></script>
-    <script src="js/email.js"></script>
+    <!--    <script src="js/email.js"></script>-->
     <script src="js/server.js"></script>
     <script src="js/nodemailer.js"></script>
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js"></script>
     <script src="js/jspdf.plugin.text-align.js"></script>
     <script src="js/index.js"></script>
@@ -33,17 +33,18 @@
 
 <body>
     <header>
-      <img src="img/hawkeye.jpg" style= "width:200px; height:100px;"/>
+        <img src="img/hawkeye.jpg" style="width:200px; height:100px;" />
     </header>
     <div class="navbar">
         <h1>Hawk-Eye MLS Match Report</h1>
     </div>
     <!-- <input type="text" class="form-control" id="team1" placeholder="Home Team"/><br> -->
-    <form class="row">
+    <form class="row" name="submit-to-google-sheet">
+
 
         <input list="stadstatus" id="status" placeholder="Stadium Status">
 
-        <datalist id="stadstatus">
+        <datalist id="stadstatus" name="MW">
           <option value="GREEN">GREEN</option>
           <option value="ORANGE">ORANGE</option>
           <option value="RED">RED</option>
@@ -51,7 +52,7 @@
         <br>
         <br>
 
-        <input list="home_teams" id="team1" placeholder="Home Team">
+        <input list="home_teams" id="team1" placeholder="Home Team" name="Match">
 
         <datalist id="home_teams">
           <option value="Atlanta United FC">Atlanta United FC</option>
@@ -113,7 +114,7 @@
           <option value="Vancouver Whitecaps">Vancouver Whitecaps</option>
         </datalist>
         <br>
-        <input list="stadiums" id="stadium" placeholder="Stadium">
+        <input list="stadiums" id="stadium" placeholder="Stadium" name="stadium">
         <datalist id="stadiums">
           <option value="Avaya Stadium">Avaya Stadium</option>
             <option value="Banc of California Stadium">Banc of California Stadium</option>
@@ -122,7 +123,7 @@
           <option value="BMO Field">BMO Field</option>
           <option value="CenturyLink Field">CenturyLink Field</option>
           <option value="Children's Mercy Park">Children's Mercy Park</option>
-          <option value="Dick's Sporting Goods Park">Dick's Sporting Goods Parkn</option>
+          <option value="Dick's Sporting Goods Park">Dick's Sporting Goods Park</option>
           <option value="Gillette Stadium">Gillette Stadium</option>
           <option value="Mapfre Stadium">Mapfre Stadium</option>
           <option value="Mercedes-Benz Stadium double-dagger">Mercedes-Benz Stadium </option>
@@ -139,8 +140,8 @@
           <option value="Yankee Stadium">Yankee Stadium</option>
         </datalist>
         <br>
-        <input type="text" id="date" value="" placeholder="Date (i.e. 10.06.17)" /><br>
-        <input list="vars" id="var" placeholder="VAR Name">
+        <input type="text" id="Timestamp" name="Timestamp" value="" placeholder="Date (i.e. 10.06.17)" /><br>
+        <input name="VAR" list="vars" id="VAR" placeholder="VAR Name">
         <datalist id="vars">
           <option value="Ismail Elfath">Ismail Elfath</option>
           <option value="Hilario Grejada">Hilario Grejada</option>
@@ -170,7 +171,7 @@
         <input type="text" id="avar" value="" placeholder="AVAR Name" /><br>
 
 
-        <input list="operators" id="operator" placeholder="Operator Name">
+        <input name="Operator" list="operators" id="operator" placeholder="Operator Name">
         <datalist id="operators">
           <option value="Ben Figueiredo">Ben Figueiredo</option>
           <option value="Dan Cash">Dan Cash</option>
@@ -196,20 +197,22 @@
         <br>
         <h2>VAR RATINGS</h2>
         <br>
+        <input name="MW" type="text" placeholder="Matchweek Number" />
+        <input name="Match" type="text" placeholder="Matchup (I.E. SKCvNER)">
+        <input name="Comms with VAR team" type="text" id="comms_var" value="" placeholder="Comms with VAR Team (1-5)" /><br>
+        <input name="Comms with Op" type="text" id="comms_ro" value="" placeholder="Comms with RO (1-5)" /><br>
+        <input name="Comms with Ref" type="text" id="comms_ref" value="" placeholder="Comms with Ref (1-5)" /><br>
+        <input name="Decision Making & Speed" type="text" id="decision" value="" type="number" placeholder="Decision Making & Speed (1-5)" /><br>
+        <input name="Protocol Knowledge" type="text" id="protocol" value="" placeholder="Protocol Knowledge (1-5)" /><br>
 
-        <input type="text" id="comms_var" value="" placeholder="Comms with VAR Team" /><br>
-        <input type="text" id="comms_ro" value="" placeholder="Comms with RO" /><br>
-        <input type="text" id="comms_ref" value="" placeholder="Comms with Ref" /><br>
-        <input type="text" id="decision" value="" type="number" placeholder="Decision Making & Speed" /><br>
-        <input type="text" id="protocol" value="" placeholder="Protocol Knowledge" /><br>
-        <!--            <input type="text" id="notes" value="" placeholder="Notes" style="width: 300px; height: 200px; word-wrap: break-word;"/><br>-->
-        <textarea rows="10" cols="90" id="notes" wrap="hard" placeholder="VAR Notes / Comments "></textarea>
-
+        <textarea name="Notes" rows="10" cols="90" id="notes" wrap="hard" placeholder="VAR Notes / Comments "></textarea>
+        <br>
+        <button class="button" id="gButton" type="submit" onclick="chgColor()">Send to VAR GSheet</button>
         <br>
         <br>
 
 
-<!--
+        <!--
         <br>
         <b><h2>AVAR RATINGS</h2></b>
         <br>
@@ -236,31 +239,7 @@
         <br>
 
 
-        
-    <!--
-        <b><i>Referees</i></b>
         <br>
-        <input type="text" id="refchecklist" value="" placeholder="Completing Checklist in a timely manner" /><br>
-        <input type="text" id="refrigging" value="" placeholder="Rigging and Troubleshooting Vokkero" /><br>
-        <input type="text" id="refunderstand" value="" placeholder="General understanding of Video Review System" /><br>
-        <input type="text" id="refcompetent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
-        <br>
-        <b><i>Stadium Personnel</i></b>
-        <br>
-        <input type="text" id="stachecklist" value="" placeholder="Completing Checklist in a timely manner" /><br>
-        <input type="text" id="starigging" value="" placeholder="Rigging and Troubleshooting Vokkero" /><br>
-        <input type="text" id="staunderstand" value="" placeholder="General understanding of Video Review System" /><br>
-        <input type="text" id="stacompetent" value="" type="number" placeholder="Helpful & Competent in Troubleshooting Scenario" /><br>
--->
-    <br>
-<!--
-        <b><h2>QUIRKS/ISSUES</h2></b>
-        <input type="text" id="hardware" value="" placeholder="Hardware Issues" /><br>
-        <input type="text" id="software" value="" placeholder="Software Issues" /><br>
-        <input type="text" id="audio" value="" placeholder="Audio Issues" /><br>
-        <textarea rows="10" cols="90" id="comments" wrap="hard" placeholder="General Comments"></textarea><br><br><br>
--->
-
 
     </form>
     <b><h2>MATCH REPORT</h2></b>
@@ -305,17 +284,17 @@
     </table>
     <br>
     <button class="button" onclick="addRow();">Add Row</button>
-    
+
     <!-- RA SECTION HERE 
      name, contact info, time in/time out, a rating for them 1-3 (1 being a candidate we want to avoid in the future, 2 being eh, 3 being our ideal RA candidate), notes-->
-     <br>
-        <b><h2>RA RATINGS</h2></b>
-        <br>
-        
+    <br>
+    <b><h2>RA RATINGS</h2></b>
+    <br>
+
     <table id="raTable">
         <thead>
             <tr>
-<!--                <th></th>-->
+                <!--                <th></th>-->
                 <th>RA Name</th>
                 <th>Arrival Time</th>
                 <th>Rating <br> (1=Bad, 2=OK, 3=Good)</th>
@@ -324,7 +303,7 @@
         </thead>
         <tbody id="raBody">
             <!--            <td><input type="text" id="inc_type"/></td>-->
-            
+
             <td><input type="text" id="ra_name" value="" placeholder="RA Name" /></td>
             <td><input type="text" id="ra_time" value="" placeholder="Arrival Time" /></td>
             <td><select name="type" id="ra_rate" class="dropdown">
@@ -333,21 +312,22 @@
                       <option value="YES">3</option>
                     </select></td>
             <td><textarea rows="10" cols="90" id="ra_notes" wrap="hard" placeholder="RA Comments"></textarea></td>
-        <br>
+            <br>
         </tbody>
         <br>
 
     </table>
-       <button class="button" onclick="addRowRA();">Add RA</button>
-    
+    <button class="button" onclick="addRowRA();">Add RA</button>
+
     <br>
-        <b><h2>QUIRKS AND ISSUES</h2></b>
-        <br>
-        
+    <b><h2>QUIRKS AND ISSUES</h2></b>
+    <br>
+
+
     <table id="quirksTable">
         <thead>
             <tr>
-<!--                <th></th>-->
+                <!--                <th></th>-->
                 <th>Quirk/Issue</th>
                 <th>Hardware/Software</th>
                 <th>Notes</th>
@@ -355,23 +335,23 @@
         </thead>
         <tbody id="quirksBody">
             <!--            <td><input type="text" id="inc_type"/></td>-->
-            
+
             <td><textarea rows="8" cols="75" id="quirk" value="" placeholder="Quirk/Issue"></textarea></td>
             <td><select name="type" id="hardsoft" class="dropdown">
                       <option value="Hardware">Hardware</option>
                       <option value="Software">Software</option>
                     </select></td>
             <td><textarea rows="10" cols="90" id="qnotes" wrap="hard" placeholder="Improvements Made"></textarea></td>
-        <br>
+            <br>
         </tbody>
         <br>
 
     </table>
-       <button class="button" onclick="addQuirk();">Add Quirk</button>
-        
-        
+    <button class="button" onclick="addQuirk();">Add Quirk</button>
 
-<!--
+
+
+    <!--
     <form>
         <b><h2>QUIRKS AND IMPROVEMENTS</h2></b>
         <br>
@@ -392,9 +372,27 @@
 
     <br>
 
-    <button type="button" class="button2" onclick="generate();">Generate PDF</button>
+    <script>
+        const script = 'https://script.google.com/macros/s/AKfycbxQt9YEytWxcmxNzRNtFqqAnpZbjnv19OnC-DXB9ILLWSL1bNbb/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(script, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+
+    <button type="submit" class="button2" onclick="generate();">Generate PDF</button>
+
 
 
 </body>
+
 
 </html>
