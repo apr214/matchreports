@@ -9,6 +9,7 @@
     <script src="js/castAsNumber.js"></script>
     <script src="js/server.js"></script>
     <script src="js/nodemailer.js"></script>
+    <script src="js/submitForm.js"></script>
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js"></script>
@@ -211,7 +212,7 @@
         <input type="hidden" name="Rank" id="b" value="" />
         <input type="hidden" name="No. of Games" id="c" value="" />
         <input type="hidden" name="Overall Average" id="d" value="" />
-        <button class="myclass" id="gButton" type="submit" onclick="castAsInt()">Send to VAR GSheet</button>
+        <button class="myclass" type="submit" onclick="castAsInt(); submitForm('submit-to-google-sheet')">Send to VAR GSheet</button>
         <br>
         <br>
 
@@ -327,7 +328,8 @@
     <b><h2>QUIRKS AND ISSUES</h2></b>
     <br>
 
-    <form id="issuesTable">
+    <form class="row" name="issuesTable">
+        <input type="text" name="Team" value="" placeholder="Which Stadium? (I.E. NYC)" />
         <table id="quirksTable">
             <thead>
                 <tr>
@@ -343,7 +345,8 @@
                 <!--            <td><input type="text" id="inc_type"/></td>-->
 
                 <td><textarea name="Description" rows="8" cols="50" id="quirk" value="" placeholder="Quirk/Issue"></textarea></td>
-                <td><select name="Type" id="hardsoft" class="dropdown">
+                <td>
+                    <select name="Type" id="hardsoft" class="dropdown">
                       <option value="Hardware">Hardware</option>
                       <option value="Software">Software</option>
                     <option value="Software">Audio</option>
@@ -368,44 +371,16 @@
                 <br>
             </tbody>
             <br>
-
+            
         </table>
+        
+        
+        <button class="myclass" type="submit" onclick="submitForm('issuesTable')">Send to Issue Gsheet</button>
     </form>
-    <button class="button" onclick="addQuirk();">Add Quirk</button><br>
-    <button class="myclass" type="submit">Send to Issue Gsheet</button>
+    
+    <button class="button" onclick="addQuirk();">Add Quirk</button><br><br>
 
     <br><br>
-
-    <script>
-        const script = 'https://script.google.com/macros/s/AKfycbxQt9YEytWxcmxNzRNtFqqAnpZbjnv19OnC-DXB9ILLWSL1bNbb/exec'
-        const form = document.forms['submit-to-google-sheet']
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(script, {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
-                .then(response => console.log('Success!', response))
-                .catch(error => console.error('Error!', error.message))
-        })
-    </script>
-
-    <script>
-        const script = 'https://script.google.com/macros/s/AKfycbxQt9YEytWxcmxNzRNtFqqAnpZbjnv19OnC-DXB9ILLWSL1bNbb/exec'
-        const form = document.forms['issuesTable']
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(script, {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
-                .then(response => console.log('Success!', response))
-                .catch(error => console.error('Error!', error.message))
-        })
-    </script>
-
 
     <button type="submit" class="button2" onclick="generate();">Generate PDF</button>
 
