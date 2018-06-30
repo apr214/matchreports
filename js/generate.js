@@ -51,9 +51,7 @@ function generate() {
     var ltrunderstand = document.getElementById("understand").value;
     var ltrcompetent = document.getElementById("competent").value;
 
-    document.getElementById('gButton').onclick = function () {
-        this.className = 'myclass';
-    }
+
 
     //    var numIncidents = document.getElementById("num_inc").value;
     //    var incType = document.getElementById("inc_type").value;
@@ -262,7 +260,7 @@ function generate() {
     var raterows = [
         {
             "position": "VAR",
-            "varrating": comms_var,
+            "varrating": Number(comms_var),
             "rorating": comms_ro,
             "refrating": comms_ref,
             "decrating": decision,
@@ -371,106 +369,6 @@ function generate() {
             }
         }
     });
-
-
-    //    var isscolumns = [
-    //        {
-    //            title: "Hardware Issues",
-    //            dataKey: "hardware"
-    //        },
-    //        {
-    //            title: "Software Issues",
-    //            dataKey: "software"
-    //        },
-    //        {
-    //            title: "Audio Issues",
-    //            dataKey: "audio"
-    //        },
-    //        {
-    //            title: "Comments",
-    //         
-    //            dataKey: "comments"
-    //        }
-    //        ];
-    //
-    //    var issrows = [
-    //        {
-    //            "hardware": hardware,
-    //            "software": software,
-    //            "audio": audio,
-    //            "comments": comments
-    //        }];
-    //    
-    //    doc.autoTable(isscolumns, issrows, {
-    //        //margin: {horizontal:5,top: 20},
-    //        cellpadding: {
-    //            top: 10
-    //        },
-    //        theme: 'grid',
-    //        startY: doc.autoTableEndPosY() + 50,
-    //        styles: {
-    //            overflow: 'linebreak', columnWidth: 'auto'
-    //        },
-    //        columnStyles: {
-    //            hardware: {
-    //                columnWidth: 90
-    //            },
-    //            software: {
-    //                columnWidth: 90
-    //            },
-    //            audio: {
-    //                columnWidth: 90    
-    //            }
-    //        }
-    //    });
-
-
-    //    Match Report Rating  TABLE
-    //    doc.text("RATINGS DETAILS", 14, 75);
-    //    
-    //        var inccolumns = [
-    //            {
-    //                title: "Incident Number",
-    //                dataKey: "incNum"
-    //            },
-    //            {
-    //                title: "Incident Type",
-    //                dataKey: "type"
-    //            },
-    //            {
-    //                title: "Correction or Overrule",
-    //                dataKey: "correct"
-    //            },
-    //            {
-    //                title: "Description",
-    //                dataKey: "description"
-    //            },
-    //            {
-    //                title: "Training Clip",
-    //                dataKey: "training"
-    //            },
-    //            {
-    //                title: "VAR Feedback",
-    //                dataKey: "varfeed"
-    //            },
-    //            {
-    //                title: "RO Feedback",
-    //                dataKey: "rofeed"
-    //            }
-    //            ];
-    //    
-    //        var incrows = [
-    //    
-    //            {
-    //                "incNum": numIncidents,
-    //                "type": incType,
-    //                "correct": confirm,
-    //                "description": description,
-    //                "training": training,
-    //                "varfeed": varfeed,
-    //                "rofeeed": rofeed
-    //                }
-    //                ]; //Match table stuff //match table
 
 
     var matcolumns = ["Inc#", "Type", "O, C, NG, G", "Description", "Training Clip?", "VAR Feedback", "RO Feedback"];
