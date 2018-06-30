@@ -5,9 +5,8 @@
     <script src="js/addRow.js"></script>
     <script src="js/addRowRA.js"></script>
     <script src="js/quirksRow.js"></script>
-    <script src="js/google_script_form_ajax.js"></script>
     <script src="js/generate.js"></script>
-    <!--    <script src="js/email.js"></script>-->
+    <script src="js/castAsNumber.js"></script>
     <script src="js/server.js"></script>
     <script src="js/nodemailer.js"></script>
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
@@ -22,7 +21,7 @@
 
     <meta property="og:url" content="https://www.hawkeyemlsreport.com" />
     <meta property="og:description" content="MLS Match Reports">
-    <meta property="og:image" content="http://ineedsurgery.com/wp-content/uploads/2015/08/Logo_white.jpg">
+    <meta property="og:image" content="https://openclipart.org/download/191496/1393757333.svg">
     <meta property="og:type" content="article" />
 
     <meta property="og:locale" content="en_US" />
@@ -52,7 +51,7 @@
         <br>
         <br>
 
-        <input list="home_teams" id="team1" placeholder="Home Team" name="Match">
+        <input list="home_teams" id="team1" placeholder="Home Team">
 
         <datalist id="home_teams">
           <option value="Atlanta United FC">Atlanta United FC</option>
@@ -204,10 +203,12 @@
         <input name="Comms with Ref" type="text" id="comms_ref" value="" placeholder="Comms with Ref (1-5)" /><br>
         <input name="Decision Making & Speed" type="text" id="decision" value="" type="number" placeholder="Decision Making & Speed (1-5)" /><br>
         <input name="Protocol Knowledge" type="text" id="protocol" value="" placeholder="Protocol Knowledge (1-5)" /><br>
-
         <textarea name="Notes" rows="10" cols="90" id="notes" wrap="hard" placeholder="VAR Notes / Comments "></textarea>
         <br>
-        <button class="button" id="gButton" type="submit" onclick="chgColor()">Send to VAR GSheet</button>
+        
+        <input name="Average" type="number" id="Average" /><br>
+        
+        <button class="button" id="gButton" type="submit" onclick="castAsInt()">Send to VAR GSheet</button>
         <br>
         <br>
 
@@ -323,31 +324,35 @@
     <b><h2>QUIRKS AND ISSUES</h2></b>
     <br>
 
+    <form id="issuesTable">
+        <table id="quirksTable">
+            <thead>
+                <tr>
+                    <!--                <th></th>-->
+                    <th>Quirk/Issue</th>
+                    <th>Hardware/Software</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="quirksBody">
+                <!--            <td><input type="text" id="inc_type"/></td>-->
 
-    <table id="quirksTable">
-        <thead>
-            <tr>
-                <!--                <th></th>-->
-                <th>Quirk/Issue</th>
-                <th>Hardware/Software</th>
-                <th>Notes</th>
-            </tr>
-        </thead>
-        <tbody id="quirksBody">
-            <!--            <td><input type="text" id="inc_type"/></td>-->
-
-            <td><textarea rows="8" cols="75" id="quirk" value="" placeholder="Quirk/Issue"></textarea></td>
-            <td><select name="type" id="hardsoft" class="dropdown">
+                <td><textarea name="Description" rows="8" cols="75" id="quirk" value="" placeholder="Quirk/Issue"></textarea></td>
+                <td><select name="type" id="hardsoft" class="dropdown">
                       <option value="Hardware">Hardware</option>
                       <option value="Software">Software</option>
                     </select></td>
-            <td><textarea rows="10" cols="90" id="qnotes" wrap="hard" placeholder="Improvements Made"></textarea></td>
+                <td><textarea rows="10" cols="40" id="qnotes" wrap="hard" placeholder="Improvements Made"></textarea></td>
+                <td><textarea rows="10" cols="40" id="furtherAction" wrap="hard" placeholder="Further Action"></textarea></td>
+                <br>
+            </tbody>
             <br>
-        </tbody>
-        <br>
 
-    </table>
+        </table>
+    </form>
     <button class="button" onclick="addQuirk();">Add Quirk</button>
+    <br><br>
+    <!--    <button class="myclass" id="gButton" type="submit">Send Issues to GSheet</button>-->
 
 
 
