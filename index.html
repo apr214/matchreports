@@ -10,6 +10,8 @@
     <script src="js/server.js"></script>
     <script src="js/nodemailer.js"></script>
     <script src="js/submitForm.js"></script>
+    <script src="js/submitIssuesForm.js"></script>
+
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js"></script>
@@ -371,13 +373,13 @@
                 <br>
             </tbody>
             <br>
-            
+
         </table>
-        
-        
-        <button class="myclass" type="submit" onclick="submitForm('issuesTable')">Send to Issue Gsheet</button>
+
+
+        <button class="myclass" type="submit" onclick="submitIssuesForm('issuesTable')">Send to Issue Gsheet</button>
     </form>
-    
+
     <button class="button" onclick="addQuirk();">Add Quirk</button><br><br>
 
     <br><br>
