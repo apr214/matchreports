@@ -28,9 +28,8 @@
 
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    
-    <link rel="icon" 
-      type="image/png" href="img/soccer.ico">
+
+    <link rel="icon" type="image/png" href="img/soccer.ico">
 </head>
 
 <body>
@@ -208,10 +207,10 @@
         <input name="Protocol Knowledge" type="text" id="protocol" value="" placeholder="Protocol Knowledge (1-5)" /><br>
         <textarea name="Notes" rows="10" cols="90" id="notes" wrap="hard" placeholder="VAR Notes / Comments "></textarea>
         <br>
-        <input type="hidden" name="Average" id="a" value=""/>
-        <input type="hidden" name="Rank" id="b" value=""/>
-        <input type="hidden" name="No. of Games" id="c" value=""/>
-        <input type="hidden" name="Overall Average" id="d" value=""/>
+        <input type="hidden" name="Average" id="a" value="" />
+        <input type="hidden" name="Rank" id="b" value="" />
+        <input type="hidden" name="No. of Games" id="c" value="" />
+        <input type="hidden" name="Overall Average" id="d" value="" />
         <button class="button" id="gButton" type="submit" onclick="castAsInt()">Send to VAR GSheet</button>
         <br>
         <br>
@@ -334,52 +333,48 @@
                 <tr>
                     <!--                <th></th>-->
                     <th>Quirk/Issue</th>
-                    <th>Hardware/Software</th>
+                    <th>Hardware/Software And Location</th>
                     <th>Notes</th>
+                    <th>Further Action</th>
+                    <th>Ticket Closed?</th>
                 </tr>
             </thead>
             <tbody id="quirksBody">
                 <!--            <td><input type="text" id="inc_type"/></td>-->
 
-                <td><textarea name="Description" rows="8" cols="75" id="quirk" value="" placeholder="Quirk/Issue"></textarea></td>
-                <td><select name="type" id="hardsoft" class="dropdown">
+                <td><textarea name="Description" rows="8" cols="50" id="quirk" value="" placeholder="Quirk/Issue"></textarea></td>
+                <td><select name="Type" id="hardsoft" class="dropdown">
                       <option value="Hardware">Hardware</option>
                       <option value="Software">Software</option>
-                    </select></td>
-                <td><textarea rows="10" cols="40" id="qnotes" wrap="hard" placeholder="Improvements Made"></textarea></td>
-                <td><textarea rows="10" cols="40" id="furtherAction" wrap="hard" placeholder="Further Action"></textarea></td>
+                    <option value="Software">Audio</option>
+                    </select><br>
+                    <select name="Location" id="hardsoft" class="dropdown" value="Location?">
+                        <option value="TT">Location?</option>
+                      <option value="VOR">VOR</option>
+                      <option value="IO">IO</option>
+                        <option value="VIOR">VOR/IO</option>
+                    </select>
+                    <input type="text" name="Reported By" placeholder="Reported By?" />
+                </td>
+                <td><textarea name="Measures Taken" rows="10" cols="40" id="qnotes" wrap="hard" placeholder="Measures Taken"></textarea></td>
+                <td><textarea name="Further Action" rows="10" cols="40" wrap="hard" placeholder="Further Action"></textarea></td>
+                <td>
+                    <select name="Ticket Closed" id="hardsoft" class="dropdown" value="Location?">
+                      <option value="Y">Y</option>
+                      <option value="N">N</option>
+                    </select>
+                </td>
+
                 <br>
             </tbody>
             <br>
 
         </table>
     </form>
-    <button class="button" onclick="addQuirk();">Add Quirk</button>
+    <button class="button" onclick="addQuirk();">Add Quirk</button><br>
+    <button class="myclass" type="submit">Send to Issue Gsheet</button>
+
     <br><br>
-    <!--    <button class="myclass" id="gButton" type="submit">Send Issues to GSheet</button>-->
-
-
-
-    <!--
-    <form>
-        <b><h2>QUIRKS AND IMPROVEMENTS</h2></b>
-        <br>
-        <textarea rows="10" cols="90" id="improvements" wrap="hard" placeholder="Impovements Made"></textarea><br>
-        <textarea rows="10" cols="90" id="quirks" wrap="hard" placeholder="Quirks?"></textarea>
-        <br>
-        <textarea rows="10" cols="90" id="gen_comments" wrap="hard" placeholder="General Comments"></textarea>
-
-        <br>
-    </form>
--->
-
-
-    <!-- create table here. Create insertrow to generate HTML <td id=inc+'rownum'>-->
-
-
-
-
-    <br>
 
     <script>
         const script = 'https://script.google.com/macros/s/AKfycbxQt9YEytWxcmxNzRNtFqqAnpZbjnv19OnC-DXB9ILLWSL1bNbb/exec'
@@ -396,9 +391,23 @@
         })
     </script>
 
+    <script>
+        const script = 'https://script.google.com/macros/s/AKfycbxQt9YEytWxcmxNzRNtFqqAnpZbjnv19OnC-DXB9ILLWSL1bNbb/exec'
+        const form = document.forms['issuesTable']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(script, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
 
     <button type="submit" class="button2" onclick="generate();">Generate PDF</button>
-
 
 
 </body>
