@@ -361,8 +361,7 @@ table td {
 }
 
 .myclass {
-    background-color: orchid;
-    /* Green */
+    background-color: purple;/* Green */
     border: none;
     cursor: pointer;
     color: white;
