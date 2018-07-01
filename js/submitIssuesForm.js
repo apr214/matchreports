@@ -12,3 +12,9 @@ function submitIssuesForm(formId) {
             .catch(error => console.error('Error!', error.message))
     })
 }
+
+function changeColor(id) {
+
+    document.getElementById(id).style.background = "grey";
+    document.getElementById(id).innerHTML = "SENT";
+}
