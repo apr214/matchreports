@@ -214,7 +214,7 @@
         <input type="hidden" name="Rank" id="b" value="" />
         <input type="hidden" name="No. of Games" id="c" value="" />
         <input type="hidden" name="Overall Average" id="d" value="" />
-        <button class="myclass" type="submit" onclick="castAsInt(); submitForm('submit-to-google-sheet')">Send to VAR GSheet</button>
+        <button class="myclass" type="submit" id="ratingsButton" onclick="castAsInt(); changeColor('ratingsButton'); submitForm('submit-to-google-sheet')">Send to VAR GSheet</button>
         <br>
         <br>
 
@@ -331,7 +331,7 @@
     <br>
 
     <form class="row" name="issuesTable">
-        <input type="text" name="Team" value="" placeholder="Which Stadium? (I.E. NYC)" />
+        <input type="text" name="Team" value="" placeholder="Which Team? (I.E. NYC)" />
         <table id="quirksTable">
             <thead>
                 <tr>
@@ -377,13 +377,13 @@
         </table>
 
 
-        <button class="myclass" type="submit" onclick="submitIssuesForm('issuesTable')">Send to Issue Gsheet</button>
+        <button class="myclass" type="submit" id="issueSubmit" onclick="submitIssuesForm('issuesTable'); changeColor('issueSubmit');">Send to Issue Gsheet</button>
     </form>
 
     <button class="button" onclick="addQuirk();">Add Quirk</button><br><br>
 
     <br><br>
-
+    
     <button type="submit" class="button2" onclick="generate();">Generate PDF</button>
 
 
